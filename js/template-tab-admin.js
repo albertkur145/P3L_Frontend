@@ -1,7 +1,7 @@
 const tabLeft = `
     <!-- header -->
     <div class="header">
-        <p>Kouvee <i class="fas fa-paw"></i></p>
+        <a href="beranda.html">Kouvee <i class="fas fa-paw"></i></a>
     </div>
     <!-- akhir header -->
 
@@ -9,7 +9,7 @@ const tabLeft = `
     <div class="content">
         <div class="row">
             <div class="col-12" style="padding: 0;">
-                <a href="javascript:void(0)" class="tab jenis-hewan-tab">
+                <a href="jenis-hewan.html" class="tab jenis-hewan-tab">
                     <div class="row">
                         <div class="col-1"><i class="fas fa-dog"></i></div>
                         <div class="col-10 txt">Jenis hewan</div>

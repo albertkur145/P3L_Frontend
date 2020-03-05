@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="../fontawesome/css/all.min.css">
 
     <link rel="stylesheet" href="../css/template-tab-admin.css">
-    <link rel="stylesheet" href="../css/beranda.css">
+    <link rel="stylesheet" href="../css/template-form.css">
 
-    <title>Beranda | Kouvee Pet Shop</title>
+    <title>Jenis Hewan | Kouvee Pet Shop</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 
                     <!-- title -->
                     <div class="col-6">
-                        <p class="title">Halo, Admin!</p>
+                        <p class="title"><a href="jenis-hewan.html">Jenis Hewan</a> <span>></span> Tambah</p>
                     </div>
                     <!-- title -->
 
@@ -50,25 +50,47 @@
                     <!-- akhir logout -->
 
                     <!-- content -->
-                    <div class="col-12 beranda">
-                        
+                    <div class="col-12 content">
+                        <form>
+                            <div class="form-group">
+                                <label for="jenis">Jenis hewan</label>
+                                <input type="text" class="form-control" id="jenis" onkeyup="validateJenis()" autocomplete="off">
+                                <small class="form-text text-muted jenis-error">Jenis hewan tidak valid.</small>
+                            </div>
+
+                            <button class="simpan" onclick="return validateForm()">Simpan</button>
+                        </form>
                     </div>
                     <!-- content -->
 
                 </div>
             </div>
-            
+
         </div>
         <!-- akhir right -->
 
     </div>
     <!-- app -->
 
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div> 
+    </div>
+    <!-- akhir popup message -->
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/template-tab-admin.js"></script>
     <script src="../js/template-logout-admin.js"></script>
+    <script src="../js/jenis-hewan-form.js"></script>
 </body>
 
 </html>
