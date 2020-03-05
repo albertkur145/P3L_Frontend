@@ -18,6 +18,11 @@
     width: 60%;
 }
 
+#app .right .content input:focus {
+    box-shadow: 0 0 0 0.25rem #FFBFD2;
+    border-color: #FFA8C2;
+}
+
 #app .right .content small {
     display: none;
     color: #D63031 !important;
