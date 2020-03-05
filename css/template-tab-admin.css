@@ -183,6 +183,16 @@
                     color: #E74C3C;
                 }
 
+            #app .right .content .emptyTable {
+                display: none;
+                text-align: center;
+                padding: 0.75rem;
+                font-size: 1.0625rem;
+                color: #0075FF;
+                font-weight: 500;
+                border: 0.0625rem dotted #0075FF;
+            }
+
 .popup-message {
     display: none;
     justify-content: center;

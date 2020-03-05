@@ -85,7 +85,15 @@ function getDataByName(name) {
 
         success: function (response) {
             if (response.code === 200) {
+                $('#app .right .content .emptyTable').css('display', 'none');
                 setTable(response.data);
+            }
+        },
+
+        error: function (response) {
+            if(response.responseJSON.code === 404) {
+                $('#app .right .content .data .table tbody').html('');
+                $('#app .right .content .emptyTable').css('display', 'block');
             }
         }
     });
