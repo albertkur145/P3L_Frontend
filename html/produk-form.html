@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/template-tab-admin.css">
+    <link rel="stylesheet" href="../css/template-form.css">
+
+    <title>Produk | Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app">
+
+        <!-- left -->
+        <div class="left">
+
+            <!-- template tab admin js -->
+
+        </div>
+        <!-- akhir left -->
+
+        <!-- right -->
+        <div class="right">
+            <div class="container">
+                <div class="row">
+
+                    <!-- title -->
+                    <div class="col-6">
+                        <p class="title"><a href="produk.html">Produk</a> <span>></span> Tambah</p>
+                    </div>
+                    <!-- title -->
+
+                    <!-- logout -->
+                    <div class="col-6 logout">
+                        <!-- template logout admin js -->
+                    </div>
+                    <!-- akhir logout -->
+
+                    <!-- content -->
+                    <div class="col-12 content">
+                        <form>
+                            <div class="form-group">
+                                <label for="nama">Nama produk</label>
+                                <input type="text" class="form-control" id="nama" onkeyup="validateNamaProduk()" autocomplete="off">
+                                <small class="form-text text-muted nama-error">Nama produk tidak valid.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="stok">Stok</label>
+                                <input type="number" class="form-control" id="stok" onkeyup="validateStok()" autocomplete="off">
+                                <small class="form-text text-muted stok-error">Stok produk tidak valid.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="harga">Harga</label>
+                                <input type="text" class="form-control" id="harga" onkeyup="validateHarga()" autocomplete="off">
+                                <small class="form-text text-muted harga-error">Harga produk tidak valid.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kategori">Kategori</label>
+
+                                <select id="kategori" class="form-control">
+
+                                    <!-- append from js req api -->
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Foto produk</label><br>
+                                <input type="file" id="image" style="font-size: 0.875rem;" accept="image/x-png,image/jpeg,image/jpg">
+                                <small class="form-text text-muted img-error">Gambar tidak valid.</small>
+                            </div>
+
+                            <button class="simpan" onclick="return validateForm()">Simpan</button>
+                        </form>
+                    </div>
+                    <!-- content -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- akhir right -->
+
+    </div>
+    <!-- app -->
+
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-tab-admin.js"></script>
+    <script src="../js/template-logout-admin.js"></script>
+    <script src="../js/produk-form.js"></script>
+</body>
+
+</html>

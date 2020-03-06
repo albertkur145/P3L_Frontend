@@ -31,7 +31,7 @@ const tabLeft = `
 
         <div class="row">
             <div class="col-12" style="padding: 0;">
-                <a href="javascript:void(0)" class="tab produk-tab">
+                <a href="produk.html" class="tab produk-tab">
                     <div class="row">
                         <div class="col-1"><i class="fas fa-box-open"></i></div>
                         <div class="col-10">Produk</div>
@@ -42,9 +42,9 @@ const tabLeft = `
         
         <div class="row">
             <div class="col-12" style="padding: 0;">
-                <a href="javascript:void(0)" class="tab layanan-tab">
+                <a href="layanan.html" class="tab layanan-tab">
                     <div class="row">
-                        <div class="col-1"><i class="fas fa-cut"></i></div>
+                        <div class="col-1"><i class="fas fa-cut" style="font-size: 1.1875rem"></i></div>
                         <div class="col-10">Layanan</div>
                     </div>
                 </a>
@@ -53,7 +53,7 @@ const tabLeft = `
 
         <div class="row">
             <div class="col-12" style="padding: 0;">
-                <a href="javascript:void(0)" class="tab pegawai-tab">
+                <a href="pegawai.html" class="tab pegawai-tab">
                     <div class="row">
                         <div class="col-1"><i class="fas fa-user-cog"></i></div>
                         <div class="col-10">Pegawai</div>
@@ -64,7 +64,7 @@ const tabLeft = `
 
         <div class="row">
             <div class="col-12" style="padding: 0;">
-                <a href="javascript:void(0)" class="tab supplier-tab">
+                <a href="supplier.html" class="tab supplier-tab">
                     <div class="row">
                         <div class="col-1"><i class="fas fa-people-carry"></i></div>
                         <div class="col-10">Supplier</div>

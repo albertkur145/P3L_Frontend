@@ -14,13 +14,31 @@
     color: #333;
 }
 
-#app .right .content input {
+#app .right .content label {
+    font-size: 0.9375rem;
+    color: #333;
+    margin-top: 0.5rem;
+}
+
+#app .right .content input,
+#app .right .content select {
     width: 60%;
 }
 
-#app .right .content input:focus {
+#app .right .content .tanggal-lahir select {
+    width: 100%;
+}
+
+#app .right .content input:focus,
+#app .right .content select:focus {
     box-shadow: 0 0 0 0.25rem #FFBFD2;
     border-color: #FFA8C2;
+}
+
+#app .right .content input[type=number]::-webkit-outer-spin-button,
+#app .right .content input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 #app .right .content small {
@@ -30,7 +48,7 @@
 
 #app .right .content .simpan {
     font-size: 0.875rem;
-    margin-top: 0.5rem;
+    margin-top: 0.875rem;
     padding: 0.625rem 1.125rem;
     border-radius: 0.375rem;
     border: 0;
