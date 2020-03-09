@@ -30,10 +30,10 @@ function validateForm() {
             "nama": jenisHewan.val()
         }
         if (!id)
-            reqAPI('post', params);
+            reqAPI('create', params);
         else {
             params.id = id;
-            reqAPI('put', params);
+            reqAPI('update', params);
         }
     }
 
@@ -45,8 +45,8 @@ function validateForm() {
 
 function reqAPI(type, params) {
     $.ajax({
-        url: `${API}jenishewan/`,
-        type: type,
+        url: `${API}JenisHewan/${type}`,
+        type: 'post',
         dataType: 'json',
         data: params,
 
@@ -61,7 +61,7 @@ function reqAPI(type, params) {
 
 function getData(id) {
     $.ajax({
-        url: `${API}jenishewan/`,
+        url: `${API}JenisHewan`,
         type: 'get',
         dataType: 'json',
         data: {
@@ -78,10 +78,6 @@ function getData(id) {
 function setForm(data) {
     jenisHewan.val(data.nama);
 }
-
-
-
-
 
 
 $(document).ready(() => {

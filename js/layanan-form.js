@@ -96,10 +96,10 @@ function validateForm() {
         params.append("image", uploadGambar[0].files[0]);
         
         if (!id)
-            reqAPI('post', params);
+            reqAPI('create', params);
         else {
             params.append("id", id);
-            reqAPI('post', params);
+            reqAPI('update', params);
         }
     }
 
@@ -117,8 +117,8 @@ function validateForm() {
 
 function reqAPI(type, params) {
     $.ajax({
-        url: `${API}layanan/`,
-        type: type,
+        url: `${API}Layanan/${type}`,
+        type: 'post',
         dataType: 'json',
         processData: false,     // default kirim object, form mengandung file
         contentType: false,     // default x-www-form-urlencoded
@@ -135,7 +135,7 @@ function reqAPI(type, params) {
 
 function getData(id) {
     $.ajax({
-        url: `${API}layanan/`,
+        url: `${API}Layanan`,
         type: 'get',
         dataType: 'json',
         data: {

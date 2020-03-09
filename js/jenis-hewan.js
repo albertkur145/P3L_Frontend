@@ -43,8 +43,8 @@ function hideConfirmMessage() {
 
 function deleteData(id) {
     $.ajax({
-        url: `${API}jenishewan`,
-        type: 'delete',
+        url: `${API}JenisHewan/delete`,
+        type: 'post',
         dataType: 'json',
         data: {
             id: id
@@ -62,7 +62,7 @@ function deleteData(id) {
 
 function getAllData() {
     $.ajax({
-        url: `${API}jenishewan`,
+        url: `${API}JenisHewan`,
         type: 'get',
         dataType: 'json',
 
@@ -70,13 +70,20 @@ function getAllData() {
             if (response.code === 200) {
                 setTable(response.data);
             }
+        },
+
+        error: function (response) {
+            if (response.responseJSON.code === 404) {
+                $('#app .right .content .data .table tbody').html('');
+                $('#app .right .content .emptyTable').css('display', 'block');
+            }
         }
     });
 }
 
 function getDataByName(name) {
     $.ajax({
-        url: `${API}jenishewan`,
+        url: `${API}JenisHewan`,
         type: 'get',
         dataType: 'json',
         data: {

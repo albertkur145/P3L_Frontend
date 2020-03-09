@@ -73,10 +73,10 @@ function validateForm() {
         };
 
         if (!id)
-            reqAPI('post', params);
+            reqAPI('create', params);
         else {
             params.id = id;
-            reqAPI('put', params);
+            reqAPI('update', params);
         }
     }
 
@@ -97,8 +97,8 @@ function validateForm() {
 
 function reqAPI(type, params) {
     $.ajax({
-        url: `${API}supplier/`,
-        type: type,
+        url: `${API}Supplier/${type}`,
+        type: 'post',
         dataType: 'json',
         data: params,
 
@@ -113,7 +113,7 @@ function reqAPI(type, params) {
 
 function getData(id) {
     $.ajax({
-        url: `${API}supplier/`,
+        url: `${API}Supplier`,
         type: 'get',
         dataType: 'json',
         data: {

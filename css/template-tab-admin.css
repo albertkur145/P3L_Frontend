@@ -9,8 +9,10 @@
         height: 100%;
         position: fixed;
         color: #fff;
-        background: linear-gradient(to left, #ffdde1, #ee9ca7);
-        /* background-color: #F3C7DB; */
+        /* background: linear-gradient(to left, #ffdde1, #ee9ca7); */
+        background-image: url('../pictures/bg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
         overflow-y: scroll;
         overflow-x: hidden;
     }
@@ -33,8 +35,6 @@
             font-family: 'Gaegu';
             font-weight: 700;
             position: fixed;
-            /* background-color: #F3C7DB; */
-            background: linear-gradient(to left, #ffdde1, #ee9ca7);
             z-index: 1;
             text-align: center;
             padding: 2rem 0;
@@ -42,10 +42,11 @@
 
             #app .left .header a {
                 display: inline-block;
-                font-size: 2rem;
+                font-size: 2.625rem;
                 margin: 0;
-                color: #7B2356;
                 text-decoration: none;
+                color: #FFF;
+                text-shadow: 0 0 0.5rem #5E0027;
             }
 
             #app .left .header a:hover {
@@ -70,7 +71,7 @@
 
             #app .left .content .tab {
                 display: block;
-                color: #5F0037;
+                color: #FFF;
                 text-decoration: none;
                 padding: 1rem 3rem;
                 font-size: 1rem;
@@ -82,11 +83,11 @@
 
             #app .left .content .tab:hover {
                 padding-left: 3.5rem;
-                background-color: rgba(255, 227, 231, 0.3);
+                background-color: rgba(255, 223, 233, 0.6);
             }
 
             .active-tab {
-                background-color: rgba(255, 219, 223, 0.7) !important;
+                background-color: rgba(255, 223, 233, 0.8) !important;
             }
 
     #app .right {

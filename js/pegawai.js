@@ -62,8 +62,8 @@ function hideConfirmMessage() {
 
 function deleteData(id) {
     $.ajax({
-        url: `${API}pegawai`,
-        type: 'delete',
+        url: `${API}Pegawai/delete`,
+        type: 'post',
         dataType: 'json',
         data: {
             id: id
@@ -81,7 +81,7 @@ function deleteData(id) {
 
 function getAllData() {
     $.ajax({
-        url: `${API}pegawai`,
+        url: `${API}Pegawai`,
         type: 'get',
         dataType: 'json',
 
@@ -89,13 +89,20 @@ function getAllData() {
             if (response.code === 200) {
                 setTable(response.data);
             }
+        },
+
+        error: function (response) {
+            if (response.responseJSON.code === 404) {
+                $('#app .right .content .data .table tbody').html('');
+                $('#app .right .content .emptyTable').css('display', 'block');
+            }
         }
     });
 }
 
 function getDataByName(name) {
     $.ajax({
-        url: `${API}pegawai`,
+        url: `${API}Pegawai`,
         type: 'get',
         dataType: 'json',
         data: {

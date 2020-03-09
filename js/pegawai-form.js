@@ -126,10 +126,10 @@ function validateForm() {
 
         if (!id) {
             params.password = password.val();
-            reqAPI('post', params);
+            reqAPI('create', params);
         } else {
             params.id = id;
-            reqAPI('put', params);
+            reqAPI('update', params);
         }
     }
 
@@ -156,8 +156,8 @@ function validateForm() {
 
 function reqAPI(type, params) {
     $.ajax({
-        url: `${API}pegawai/`,
-        type: type,
+        url: `${API}Pegawai/${type}`,
+        type: 'post',
         dataType: 'json',
         data: params,
 
@@ -176,7 +176,7 @@ function reqAPI(type, params) {
 
 function getData(id) {
     $.ajax({
-        url: `${API}pegawai/`,
+        url: `${API}Pegawai`,
         type: 'get',
         dataType: 'json',
         data: {
@@ -207,7 +207,7 @@ function setForm(data) {
 
 function getAllRole() {
     $.ajax({
-        url: `${API}rolepegawai/`,
+        url: `${API}RolePegawai`,
         type: 'get',
         dataType: 'json',
 
