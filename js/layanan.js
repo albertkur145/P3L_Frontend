@@ -1,3 +1,7 @@
+
+// variable global
+let num;
+
 function enter() {
     if (event.keyCode === 13) {
         getDataByName($('#keyword').val());
@@ -33,9 +37,10 @@ function setTable(data) {
 
     data.forEach((value, i) => {
         value.updated_at === null ? value.updated_at = '-' : value.updated_at;
+
         table.append(`
             <tr>
-                <th>${i+1}</th>
+                <th>${num}</th>
                 <td>${value.nama}</td>
                 <td>Rp ${generateRupiah(value.harga)}</td>
                 <td>${value.created_at}</td>
@@ -43,6 +48,7 @@ function setTable(data) {
                 <td><a href="${BASE_URL}layanan-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
         `);
+        num += 1;
     });
 }
 
@@ -56,6 +62,8 @@ function hideConfirmMessage() {
 }
 
 function deleteData(id) {
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}Layanan/delete`,
         type: 'post',
@@ -65,28 +73,70 @@ function deleteData(id) {
         },
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200) {
                 hideConfirmMessage();
                 $('.popup-message .message p').text('Data berhasil dihapus dari sistem');
                 $('.popup-message').css('display', 'flex');
             }
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
 
-function getAllData() {
+// function getAllData() {
+//     $('.loading').css('display', 'flex');
+
+//     $.ajax({
+//         url: `${API}Layanan`,
+//         type: 'get',
+//         dataType: 'json',
+
+//         success: function (response) {
+//             $('.loading').css('display', 'none');
+//             if (response.code === 200) {
+//                 setTable(response.data);
+//             }
+//         },
+
+//         error: function (response) {
+//             $('.loading').css('display', 'none');
+//             if (response.responseJSON.code === 404) {
+//                 $('#app .right .content .data .table tbody').html('');
+//                 $('#app .right .content .emptyTable').css('display', 'block');
+//             }
+//         }
+//     });
+// }
+
+function getAllData(page = 1) {
+    $('.loading').css('display', 'flex');
+    num = (page * 10) - 9;
+
     $.ajax({
-        url: `${API}Layanan`,
+        url: `${API}Layanan/paging`,
         type: 'get',
         dataType: 'json',
 
+        data: {
+            page: page
+        },
+
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200) {
+                addPaging(response.amount, page);
                 setTable(response.data);
             }
         },
 
         error: function (response) {
+            $('.loading').css('display', 'none');
             if (response.responseJSON.code === 404) {
                 $('#app .right .content .data .table tbody').html('');
                 $('#app .right .content .emptyTable').css('display', 'block');
@@ -95,7 +145,26 @@ function getAllData() {
     });
 }
 
+function addPaging(amount, page) {
+    let paging = $('#app .right .content .data .paging');
+    paging.html('');
+
+    for (let i = 1; i <= Math.ceil(amount / 10); i++) {
+        paging.append(`
+            <span class="page paging-${i}" onclick="getAllData(${i})">${i}</span>
+        `);
+    }
+
+    $(`#app .right .content .data .paging-${page}`).addClass('paging-active');
+}
+
 function getDataByName(name) {
+    $('.loading').css('display', 'flex');
+
+    let paging = $('#app .right .content .data .paging');
+    paging.html('');
+    num = 1;
+
     $.ajax({
         url: `${API}Layanan`,
         type: 'get',
@@ -105,6 +174,7 @@ function getDataByName(name) {
         },
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200) {
                 $('#app .right .content .emptyTable').css('display', 'none');
                 setTable(response.data);
@@ -112,6 +182,7 @@ function getDataByName(name) {
         },
 
         error: function (response) {
+            $('.loading').css('display', 'none');
             if (response.responseJSON.code === 404) {
                 $('#app .right .content .data .table tbody').html('');
                 $('#app .right .content .emptyTable').css('display', 'block');

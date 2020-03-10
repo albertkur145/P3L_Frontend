@@ -28,14 +28,23 @@ function hidePopup() {
 }
 
 function getAllKategori() {
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}KategoriProduk`,
         type: 'get',
         dataType: 'json',
         
         success: function(response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200)
                 setAllKategori(response.data);
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
@@ -151,6 +160,8 @@ function validateForm() {
 }
 
 function reqAPI(type, params) {
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}Produk/${type}`,
         type: 'post',
@@ -160,15 +171,25 @@ function reqAPI(type, params) {
         data: params,
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200) {
                 $('.popup-message .message p').text('Berhasil menyimpan produk');
                 $('.popup-message').css('display', 'flex');
             }
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
 
 function getData(id) {
+    $('#app .right .title').html(`<a href="produk.html">Produk</a> <span>></span> Ubah`);
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}Produk`,
         type: 'get',
@@ -178,8 +199,15 @@ function getData(id) {
         },
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200)
                 setForm(response.data[0]);
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }

@@ -155,6 +155,8 @@ function validateForm() {
 }
 
 function reqAPI(type, params) {
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}Pegawai/${type}`,
         type: 'post',
@@ -162,6 +164,7 @@ function reqAPI(type, params) {
         data: params,
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200) {
                 $('.popup-message .message p').text('Berhasil menyimpan pegawai');
                 $('.popup-message').css('display', 'flex');
@@ -169,12 +172,16 @@ function reqAPI(type, params) {
         },
 
         error: function() {
+            $('.loading').css('display', 'none');
             $('.username-already-error', form).css('display', 'block');
         }
     });
 }
 
 function getData(id) {
+    $('#app .right .title').html(`<a href="pegawai.html">Pegawai</a> <span>></span> Ubah`);
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}Pegawai`,
         type: 'get',
@@ -184,8 +191,15 @@ function getData(id) {
         },
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200)
                 setForm(response.data[0]);
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
@@ -206,14 +220,23 @@ function setForm(data) {
 }
 
 function getAllRole() {
+    $('.loading').css('display', 'flex');
+
     $.ajax({
         url: `${API}RolePegawai`,
         type: 'get',
         dataType: 'json',
 
         success: function (response) {
+            $('.loading').css('display', 'none');
             if (response.code === 200)
                 setRole(response.data);
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
