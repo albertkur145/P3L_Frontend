@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/login.css">
+
+    <title>Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <div class="bg-logo">
+        <div class="login">
+            <p class="text-center welcome">Kouvee Pet Shop</p>
+
+            <form class="form">
+                <div class="form-group">
+                    <label for="username"><i>Username</i></label>
+                    <input type="text" class="form-control" id="username" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i>Password</i></label>
+                    <input type="password" class="form-control" id="password" autocomplete="off">
+                </div>
+
+                <button class="btn-login" onclick="return validateLogin()">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

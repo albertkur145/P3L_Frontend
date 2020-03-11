@@ -7,6 +7,11 @@ function activeTab() {
     $('#app .left .pegawai-tab').addClass('active-tab');
 }
 
+function logout() {
+    localStorage.removeItem('pegawai');
+    window.location.href = `${BASE_URL}index.html`;
+}
+
 function hidePopup() {
     $('.popup-message').css('display', 'none');
     window.location.href = `${BASE_URL}pegawai.html`;
@@ -251,11 +256,20 @@ function setRole(data) {
 
 
 $(document).ready(() => {
+
+    let pegawai = JSON.parse(localStorage.getItem('pegawai'));
+
+    if (pegawai) {
+        if (pegawai.role_name !== 'Admin')
+            window.history.back();
+    } else {
+        window.location.href = `${BASE_URL}index.html`;
+    }
+
     appendTTL();
     getAllRole();
 
     id = window.location.search.substring(1);
-
     if (id)
         getData(id);
 

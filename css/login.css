@@ -1,0 +1,128 @@
+.bg-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-family: 'Roboto';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../pictures/bg-login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+    .bg-logo .login {
+        width: 26rem;
+        padding: 2.25rem 3.875rem 3.25rem;
+        background-color: #FFF;
+        border-radius: 1rem;
+        box-shadow: 0 0 0.1875rem 0.25rem #FF93B3;
+    }
+
+        .bg-logo .login .welcome {
+            font-family: 'Gaegu';
+            font-size: 2.125rem;
+            color: #FF5079;
+            font-weight: 700;
+            text-shadow: 0.0625rem 0.0625rem 0 #AA2931;
+        }
+
+        .bg-logo .login .form {
+            margin-top: 1.5rem;
+        }
+
+            .bg-logo .login .form label {
+                color: #444;
+                font-size: 0.9375rem;
+            }
+
+            .bg-logo .login .form input:focus {
+                box-shadow: 0 0 0 0.1875rem #FFB8BC;
+                border-color: #FF767E;
+            }
+
+            .bg-logo .login .form .btn-login {
+                border: 0;
+                padding: 0.5rem;
+                background-color: #FF5E84;
+                color: #FFF;
+                font-weight: 500;
+                margin-top: 0.5rem;
+                width: 100%;
+                border-radius: 0.25rem;
+                transition: background-color .3s;
+                font-size: 0.9375rem;
+                outline: none;
+            }
+
+            .bg-logo .login .form .btn-login:hover {
+                background-color: #FF4E78;
+            }
+
+.popup-message {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    animation: popup .3s ease-out;
+}
+
+@keyframes popup {
+    from {
+        margin-top: -4.5rem;
+        opacity: 0;
+    }
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
+}
+
+    .popup-message .message {
+        background-color: #FFF;
+        border-radius: 0.5rem;
+        padding: 1.5rem 2.5rem;
+    }
+
+        .popup-message .message p {
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .popup-message .message button.confirm {
+            padding: 0.5rem 1.5rem;
+            border: 0;
+            outline: 0;
+            border-radius: 0.25rem;
+            color: #FFF;
+            background-color: #0984E3;
+            transition: background-color .2s;
+        }
+
+        .popup-message .message button.confirm:hover {
+            background-color: #0978CE;
+        }
+
+.loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+    .loading img {
+        width: 15%;
+    }

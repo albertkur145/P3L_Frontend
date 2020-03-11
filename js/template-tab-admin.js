@@ -1,7 +1,7 @@
 const tabLeft = `
     <!-- header -->
     <div class="header">
-        <a href="beranda.html">Kouvee<img src="../icon/logo.png" width="15%" class="ml-2 mb-2"></a>
+        <a href="javascript:void(0)">Kouvee<img src="../icon/logo.png" width="15%" class="ml-2 mb-2"></a>
     </div>
     <!-- akhir header -->
 

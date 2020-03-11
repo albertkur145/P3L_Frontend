@@ -40,8 +40,8 @@
                 font-size: 2.75rem;
                 margin: 0;
                 text-decoration: none;
-                color: #FFF;
-                text-shadow: 0 0 0.25rem #9B0038;
+                color: #7B2356;
+                text-shadow: 0 0 0.25rem #FFF;
             }
 
             #app .left .header a:hover {
@@ -66,11 +66,13 @@
 
             #app .left .content .tab {
                 display: block;
-                color: #FFF;
-                text-shadow: 0 0 0.25rem #9B0038;
+                font-family: 'Sen';
+                color: #7B2356;
+                text-shadow: 0 0 0.25rem #FFF;
+                font-weight: 700;
                 text-decoration: none;
                 padding: 1rem 3rem;
-                font-size: 1rem;
+                font-size: 0.9375rem;
                 margin: 0;
                 cursor: pointer;
                 transition: padding-left 0.2s ease-out,
@@ -79,11 +81,11 @@
 
             #app .left .content .tab:hover {
                 padding-left: 3.5rem;
-                background-color: rgba(255, 100, 156, 0.6);
+                background-color: rgba(255, 100, 156, 0.4);
             }
 
             .active-tab {
-                background-color: rgba(255, 71, 137, 0.6) !important;
+                background-color: rgba(255, 71, 137, 0.4) !important;
             }
 
     #app .right {
@@ -322,5 +324,5 @@
 }
 
     .loading img {
-        width: 15%;
+        width: 20%;
     }

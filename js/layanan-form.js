@@ -18,6 +18,11 @@ function generateRupiah(angka) {
     }
 }
 
+function logout() {
+    localStorage.removeItem('pegawai');
+    window.location.href = `${BASE_URL}index.html`;
+}
+
 function activeTab() {
     $('#app .left .layanan-tab').addClass('active-tab');
 }
@@ -175,8 +180,17 @@ function setForm(data) {
 
 
 $(document).ready(() => {
-    id = window.location.search.substring(1);
 
+    let pegawai = JSON.parse(localStorage.getItem('pegawai'));
+
+    if (pegawai) {
+        if (pegawai.role_name !== 'Admin')
+            window.history.back();
+    } else {
+        window.location.href = `${BASE_URL}index.html`;
+    }
+
+    id = window.location.search.substring(1);
     if (id)
         getData(id);
 
