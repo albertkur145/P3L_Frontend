@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/template-pegawai-transaksi.css">
+    <link rel="stylesheet" href="../css/transaksi-produk.css">
+
+    <title>Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app" class="bg-base">
+        <div class="header">
+            <div class="brand-left">Kouvee <i class="fas fa-paw" style="font-size: 2rem"></i></div>
+
+            <div class="brand-right">PET<span>SHOP</span></div>
+        </div>
+
+        <div class="content">
+            <div class="nav-left">
+                <p class="tab tab-produk tab-active"><i class="fas fa-box-open mr-2"></i>Produk</p>
+                <p class="tab tab-layanan"><i class="fas fa-cut mr-2"></i>Layanan</p>
+                <p class="tab tab-customer"><i class="fas fa-users mr-2"></i>Member</p>
+                <p class="tab tab-hewan"><i class="fas fa-dog mr-2"></i>Hewan</p>
+                <p class="tab tab-transaksi-produk"><i class="fas fa-shopping-basket mr-2"></i>Transaksi Produk</p>
+                <p class="tab tab-transaksi-layanan"><i class="fas fa-shower mr-2"></i>Transaksi Layanan</p>
+            </div>
+
+            <div class="data-content"> <!-- isinya ini css masing" page -->
+                <div class="head">
+                    <div class="search">
+                        <span><i class="fas fa-search"></i></span>
+                        <input type="text" autocomplete="off" placeholder="Bingung ya? Cari aja disini..." onkeyup="searchData()">
+                        <button class="cari" onclick="searchData()">Cari</button>
+                    </div>
+                </div>
+
+                <div class="datas">
+
+                    <!-- append from js req api -->
+
+                </div>
+
+                <div class="data-empty">
+                    Data tidak ditemukan <i class="far fa-frown ml-1"></i>
+                </div>
+            </div>
+
+            <div class="section-right"> <!-- isinya ini css masing" page -->
+                <p class="title"><i class="fas fa-shopping-cart mr-2"></i>Keranjang</p>
+
+                <div class="cart-data">
+
+                    <!-- append from js -->
+
+                </div>
+
+                <div class="cart-empty">Keranjang masih kosong <i class="far fa-sad-tear ml-1"></i></div>
+                <button class="confirm" onclick="buyNow()">Beli (0)</button>
+            </div>
+        </div>
+    </div>
+    <!-- app -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/transaksi-produk.js"></script>
+</body>
+
+</html>

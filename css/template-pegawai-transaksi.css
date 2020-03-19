@@ -1,0 +1,87 @@
+body {
+    background-color: #DCDCDC;
+}
+
+#app {
+    font-family: 'Roboto';
+}
+
+    #app .header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem 2rem;
+        z-index: 999;
+        background-color: #FFF;
+        justify-content: space-between;
+    }
+
+        #app .header .brand-left {
+            font-family: 'Gaegu';
+            font-size: 2.5rem;
+            color: #FF6B81;
+            font-weight: 700;
+        }
+
+        #app .header .brand-right {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.625rem;
+            padding: 0.5rem 0;
+            font-weight: 700;
+            color: rgba(255, 107, 129, 0.9);
+        }
+
+            #app .header .brand-right span {
+                color: rgba(255, 107, 129, 0.6);
+            }
+
+    #app .content {
+        display: flex;
+        width: 100%;
+        margin-top: 5.25rem;
+        font-family: 'Roboto';
+    }
+
+        #app .content .nav-left {
+            width: 17%;
+            height: 100vh;
+            text-align: center;
+            background-color: #FF6B81;
+            color: #FFF;
+        }
+
+            #app .content .nav-left .tab {
+                margin: 0;
+                padding: 1.5rem 0;
+                font-size: 1rem;
+                cursor: pointer;
+                font-weight: 500;
+                border-bottom: 0.1875rem solid #FFF;
+                transition: background-color .2s;
+            }
+
+            #app .content .nav-left .tab:not(.tab-active):hover {
+                background-color: rgba(255, 71, 87, 0.4);
+            }
+
+            .tab-active {
+                background-color: rgba(255, 71, 87, 0.9);
+                color: #FFF;
+            }
+
+        #app .content .data-content {
+            width: 60%;
+            height: 100vh;
+            margin-left: 0.5rem;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        #app .content .section-right {
+            width: 27%;
+            margin-left: 0.5rem;
+            background-color: #FFF;
+            padding: 1.25rem 1rem;
+        }
