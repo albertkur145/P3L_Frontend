@@ -72,6 +72,7 @@ function deleteData(id) {
         },
 
         error: function () {
+            hideConfirmMessage();
             $('.loading').css('display', 'none');
             $('.popup-message .message p').text('Koneksi terputus! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/template-transaksi.css">
+    <link rel="stylesheet" href="../css/member.css">
+
+    <title>Kouvee Pet Shop | Member</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app" class="bg-base">
+        <div class="header">
+            <!-- template from js -->
+        </div>
+
+        <div class="content">
+            <div class="nav-left">
+                <!-- template from js -->
+            </div>
+
+            <div class="data-content">
+                <div class="head">
+                    <!-- template from js -->
+                </div>
+
+                <div class="data table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Tanggal lahir</th>
+                                <th scope="col">No HP</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <!-- append from js get api -->
+
+                        </tbody>
+                    </table>
+
+                    <div class="paging text-right mt-2 mr-2"></div>
+                </div>
+
+                <div class="emptyTable">
+                    Data tidak ditemukan <i class="far fa-frown-open"></i>
+                </div>
+            </div>
+
+            <div class="section-right">
+                <p class="judul">Form Member</p>
+
+                <div class="text-right" style="margin-top: -0.875rem;">
+                    <button class="reset" onclick="resetForm()" data-toggle="tooltip" data-placement="top" title="Reset form"><i class="fas fa-history"></i></button>
+                </div>
+
+                <div class="form">
+                    <div class="form-group">
+                        <label for="nama">Nama lengkap</label>
+                        <input type="text" class="form-control" id="nama" onkeyup="validateNama()" autocomplete="off">
+                        <small class="form-text text-muted nama-error">Nama lengkap tidak valid.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" onkeyup="validateAlamat()" autocomplete="off">
+                        <small class="form-text text-muted alamat-error">Alamat tidak valid.</small>
+                    </div>
+
+                    <div class="form-row tanggal-lahir">
+                        <div class="form-group col-12 txt-tanggal-lahir" style="margin-bottom: 0">
+                            <label>Tanggal Lahir</label>
+                        </div>
+
+                        <div class="form-group col-12 opt-tanggal-lahir">
+                            <select id="tanggal" class="form-control">
+                                <!-- tanggal lahir append js -->
+                            </select>
+                        </div>
+
+                        <div class="form-group col-12 opt-tanggal-lahir">
+                            <select id="bulan" class="form-control">
+                                <option value="01">Januari</option>
+                                <option value="02">Februari</option>
+                                <option value="03">Maret</option>
+                                <option value="04">April</option>
+                                <option value="05">Mei</option>
+                                <option value="06">Juni</option>
+                                <option value="07">Juli</option>
+                                <option value="08">Agustus</option>
+                                <option value="09">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-12 opt-tanggal-lahir">
+                            <select id="tahun" class="form-control">
+                                <!-- tahun lahir append js -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-top: -0.75rem;">
+                        <div class="form-group col-12">
+                            <small class="form-text text-muted ttl-error">Format tanggal lahir tidak valid.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nohp">No. handphone</label>
+                        <input type="number" class="form-control" id="nohp" onkeyup="validateNoHP()" autocomplete="off">
+                        <small class="form-text text-muted nohp-error">No. handphone tidak valid.</small>
+                    </div>
+
+                    <button class="simpan" onclick="validateForm()">Simpan</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- app -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+    <!-- confirm message -->
+    <div class="confirm-message">
+        <div class="message">
+            <p>Yakin ingin menghapus data ini?</p>
+            <div class="text-right">
+                <button class="cancel" onclick="hideConfirmMessage()">Cancel</button>
+                <button class="confirm">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir confirm message -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-transaksi.js"></script>
+    <script src="../js/member.js"></script>
+</body>
+</html>

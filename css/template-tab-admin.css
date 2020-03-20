@@ -207,6 +207,7 @@
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 2000;
     background-color: rgba(0, 0, 0, 0.4);
     animation: popup .3s ease-out;
 }
@@ -256,6 +257,7 @@
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 2000;
     background-color: rgba(0, 0, 0, 0.4);
     animation: popup .3s ease-out;
 }
@@ -319,7 +321,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    z-index: 2000;
     background-color: rgba(255, 255, 255, 0.5);
 }
 

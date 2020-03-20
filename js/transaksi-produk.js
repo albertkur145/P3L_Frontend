@@ -3,6 +3,10 @@
 let cart = [];
 let timeout = null;
 
+function tabActive() {
+    $('.tab-produk').addClass('tab-active');
+}
+
 function hidePopup() {
     $('.popup-message').css('display', 'none');
 }
@@ -196,6 +200,7 @@ function amountInvalid() {
 }
 
 $(document).ready(() => {
+    tabActive();
     isCartEmpty();
     getAll();
 });
