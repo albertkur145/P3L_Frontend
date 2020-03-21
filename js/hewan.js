@@ -19,7 +19,7 @@ function searchData() {
 }
 
 function tabActive() {
-    $('.tab-member').addClass('tab-active');
+    $('.tab-hewan').addClass('tab-active');
 }
 
 function hidePopup() {
@@ -59,48 +59,28 @@ function resetForm() {
     nama.removeAttr('data-id');
 
     nama.val('');
-    alamat.val('');
     tanggal.val('01');
     bulan.val('01');
     tahun.val('1950');
-    nohp.val('');
 
     $('.nama-error', form).css('display', 'none');
-    $('.alamat-error', form).css('display', 'none');
     $('.ttl-error', form).css('display', 'none');
-    $('.nohp-error', form).css('display', 'none');
 }
 
 // form
 const form = $('#app .section-right .form');
 const nama = $('#nama', form);
-const alamat = $('#alamat', form);
 const tanggal = $('#tanggal', form);
 const bulan = $('#bulan', form);
 const tahun = $('#tahun', form);
-const nohp = $('#nohp', form);
-
-const regexHP = /^08[0-9]{8,10}$/;
+const ukuran = $('#ukuran', form);
+const jenis = $('#jenis', form);
 
 function validateNama() {
     if (nama.val().length === 0)
         $('.nama-error', form).css('display', 'block');
     else
         $('.nama-error', form).css('display', 'none');
-}
-
-function validateAlamat() {
-    if (alamat.val().length === 0)
-        $('.alamat-error', form).css('display', 'block');
-    else
-        $('.alamat-error', form).css('display', 'none');
-}
-
-function validateNoHP() {
-    if (!regexHP.test(nohp.val()))
-        $('.nohp-error', form).css('display', 'block');
-    else
-        $('.nohp-error', form).css('display', 'none');
 }
 
 tanggal.focusout(() => {
@@ -133,14 +113,12 @@ function validateForm() {
     let validateTTL = validateTanggalLahir(tanggal.val(), bulan.val(), tahun.val());
     let id = nama.attr('data-id');
 
-    if (nama.val().length !== 0 && alamat.val().length !== 0 &&
-    regexHP.test(nohp.val()) && validateTTL === 1) {
+    if (nama.val().length !== 0 && validateTTL === 1) {
         const params = {
             "nama": nama.val(),
-            "alamat": alamat.val(),
             "tanggal_lahir": tahun.val() + "-" + bulan.val() + "-" + tanggal.val(),
-            "no_hp": nohp.val(),
-            "is_member": 1,
+            "ukuran_id": ukuran.val(),
+            "jenis_id": jenis.val(),
             "pegawai_id": JSON.parse(localStorage.getItem('pegawai')).id,
         }
 
@@ -155,21 +133,15 @@ function validateForm() {
     if (nama.val().length === 0)
         $('.nama-error', form).css('display', 'block');
 
-    if (alamat.val().length === 0)
-        $('.alamat-error', form).css('display', 'block');
-
     if (validateTTL === 0)
         $('.ttl-error', form).css('display', 'block');
-
-    if (!regexHP.test(nohp.val()))
-        $('.nohp-error', form).css('display', 'block');
 }
 
 function reqAPI(type, params) {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/${type}`,
+        url: `${API}Hewan/${type}`,
         type: 'post',
         dataType: 'json',
         data: params,
@@ -177,7 +149,7 @@ function reqAPI(type, params) {
         success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200) {
-                $('.popup-message .message p').text('Berhasil menyimpan customer');
+                $('.popup-message .message p').text('Berhasil menyimpan hewan');
                 $('.popup-message').css('display', 'flex');
                 resetForm();
                 getAllData();
@@ -201,9 +173,9 @@ function setTable(data) {
             <tr>
                 <th>${num}</th>
                 <td>${value.nama}</td>
-                <td>${value.alamat}</td>
                 <td>${value.tanggal_lahir}</td>
-                <td>${value.no_hp}</td>
+                <td>${value.jenis_hewan}</td>
+                <td>${value.ukuran_hewan}</td>
                 <td><i class="fas fa-pen edit" onclick="getDataByID(${value.id})"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
         `);
@@ -216,7 +188,7 @@ function getAllData(page = 1) {
     num = (page * 10) - 9;
 
     $.ajax({
-        url: `${API}Customer/paging`,
+        url: `${API}Hewan/paging`,
         type: 'get',
         dataType: 'json',
 
@@ -245,6 +217,34 @@ function getAllData(page = 1) {
     });
 }
 
+function getJenisHewan() {
+    $.ajax({
+        url: `${API}JenisHewan`,
+        type: 'get',
+        dataType: 'json',
+
+        success: function(response) {
+            if (response.code === 200) {
+                addOptionJenis(response.data);
+            }
+        }
+    });
+}
+
+function getUkuranHewan() {
+    $.ajax({
+        url: `${API}UkuranHewan`,
+        type: 'get',
+        dataType: 'json',
+
+        success: function(response) {
+            if (response.code === 200) {
+                addOptionUkuran(response.data);
+            }
+        }
+    });
+}
+
 function addPaging(amount, page) {
     let paging = $('#app .data-content .data .paging');
     paging.html('');
@@ -266,7 +266,7 @@ function getByName(nama) {
     num = 1;
 
     $.ajax({
-        url: `${API}Customer/member`,
+        url: `${API}Hewan`,
         type: 'get',
         dataType: 'json',
         data: {
@@ -295,7 +295,7 @@ function deleteByID(id) {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/delete`,
+        url: `${API}Hewan/delete`,
         type: 'post',
         dataType: 'json',
         data: {
@@ -326,7 +326,7 @@ function getDataByID(id) {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/member`,
+        url: `${API}Hewan`,
         type: 'get',
         dataType: 'json',
         data: {
@@ -354,19 +354,38 @@ function setForm(value) {
     nama.attr('data-id', value.id);
 
     nama.val(value.nama);
-    alamat.val(value.alamat);
     tanggal.val(ttl[2]);
     bulan.val(ttl[1]);
     tahun.val(ttl[0]);
-    nohp.val(value.no_hp);
+    ukuran.val(value.ukuran_id);
+    jenis.val(value.jenis_id);
+}
+
+function addOptionJenis(data) {
+    jenisHewan = $('#app .section-right .form select#jenis');
+
+    data.forEach(value => {
+        jenisHewan.append(`<option value="${value.id}">${value.nama}</option>`);
+    });
+}
+
+function addOptionUkuran(data) {
+    ukuranHewan = $('#app .section-right .form select#ukuran');
+
+    data.forEach(value => {
+        ukuranHewan.append(`<option value="${value.id}">${value.nama}</option>`);
+    });
 }
 
 $(document).ready(() => {
     let pegawai = JSON.parse(localStorage.getItem('pegawai'));
 
     if (pegawai) {
-        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
             getAllData();
+            getJenisHewan();
+            getUkuranHewan()
+        }
         else {
             $('#app .content .data-content .access-denied').css('display', 'block');
             $('#app .section-right .form').css('display', 'none');

@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../css/template-transaksi.css">
-    <link rel="stylesheet" href="../css/member.css">
+    <link rel="stylesheet" href="../css/hewan.css">
 
-    <title>Kouvee Pet Shop | Member</title>
+    <title>Kouvee Pet Shop | Hewan</title>
 </head>
 
 <body>
@@ -42,9 +42,9 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Alamat</th>
                                 <th scope="col">Tanggal lahir</th>
-                                <th scope="col">No HP</th>
+                                <th scope="col">Jenis</th>
+                                <th scope="col">Ukuran</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="section-right">
-                <p class="judul">Form Member</p>
+                <p class="judul">Form Hewan</p>
 
                 <div class="text-right" style="margin-top: -0.875rem;">
                     <button class="reset" onclick="resetForm()" data-toggle="tooltip" data-placement="top" title="Reset form"><i class="fas fa-history"></i></button>
@@ -77,15 +77,9 @@
 
                 <div class="form">
                     <div class="form-group">
-                        <label for="nama">Nama lengkap</label>
+                        <label for="nama">Nama hewan</label>
                         <input type="text" class="form-control" id="nama" onkeyup="validateNama()" autocomplete="off">
-                        <small class="form-text text-muted nama-error">Nama lengkap tidak valid.</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" onkeyup="validateAlamat()" autocomplete="off">
-                        <small class="form-text text-muted alamat-error">Alamat tidak valid.</small>
+                        <small class="form-text text-muted nama-error">Nama hewan tidak valid.</small>
                     </div>
 
                     <div class="form-row tanggal-lahir">
@@ -130,9 +124,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="nohp">No. handphone</label>
-                        <input type="number" class="form-control" id="nohp" onkeyup="validateNoHP()" autocomplete="off">
-                        <small class="form-text text-muted nohp-error">No. handphone tidak valid.</small>
+                        <label for="jenis">Jenis</label>
+                        <select id="jenis" class="form-control">
+                            <!-- append from js req api -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ukuran">Ukuran</label>
+                        <select id="ukuran" class="form-control">
+                            <!-- append from js req api -->
+                        </select>
                     </div>
 
                     <button class="simpan" onclick="validateForm()">Simpan</button>
@@ -177,6 +179,6 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/template-transaksi.js"></script>
-    <script src="../js/member.js"></script>
+    <script src="../js/hewan.js"></script>
 </body>
 </html>

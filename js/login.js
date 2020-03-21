@@ -60,7 +60,7 @@ function hidePopup() {
         if (pegawai.role_name === 'Admin')
             window.location.href = `${BASE_URL}jenis-hewan.html`;
         else
-            alert('Bukan admin');
+            window.location.href = `${BASE_URL}transaksi-produk.html`;
     }
 }
 

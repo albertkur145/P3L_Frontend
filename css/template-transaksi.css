@@ -138,6 +138,16 @@ body {
                         border: 0.0625rem solid #2d98da;
                     }
 
+            #app .content .data-content .access-denied {
+                display: none;
+                background-color: #FFF;
+                border: 0.0625rem dotted #D63031;
+                text-align: center;
+                font-size: 1rem;
+                padding: 1rem;
+                color: #D63031;
+            }
+
         #app .content .section-right {
             width: 27%;
             margin-left: 0.5rem;

@@ -3,6 +3,11 @@
 let cart = [];
 let timeout = null;
 
+function logout() {
+    localStorage.removeItem('pegawai');
+    window.location.href = `${BASE_URL}cpanel.html`;
+}
+
 function tabActive() {
     $('.tab-produk').addClass('tab-active');
 }
@@ -200,7 +205,17 @@ function amountInvalid() {
 }
 
 $(document).ready(() => {
+    let pegawai = JSON.parse(localStorage.getItem('pegawai'));
+
+    if (pegawai) {
+        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+            getAll();
+        else
+            $('#app .content .data-content .access-denied').css('display', 'block');
+    } else {
+        window.location.href = `${BASE_URL}cpanel.html`;
+    }
+
     tabActive();
     isCartEmpty();
-    getAll();
 });
