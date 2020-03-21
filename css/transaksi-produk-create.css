@@ -144,3 +144,40 @@
     #app .content .section-right .confirm:hover {
         background-color: #3742FA;
     }
+
+#form-customer .form,
+#form-member .form {
+    margin-top: 0.5rem;
+}
+
+    #form-customer .form label,
+    #form-member .form label {
+        font-size: 0.875rem;
+        color: #444;
+    }
+
+    #form-customer .form input,
+    #form-customer .form select,
+    #form-member .form select {
+        font-size: 0.8125rem;
+        width: 100%;
+        color: #333;
+    }
+
+    #form-customer .form input[type=checkbox] {
+        width: inherit;
+    }
+
+    #form-customer .form input[type=number]::-webkit-outer-spin-button,
+    #form-customer .form input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    
+
+    #form-customer .form small {
+        display: none;
+        font-size: 0.8125rem;
+        color: #eb2f06 !important;
+    }

@@ -142,7 +142,7 @@ function validateForm() {
             "no_hp": nohp.val(),
             "is_member": 1,
             "pegawai_id": JSON.parse(localStorage.getItem('pegawai')).id,
-        }
+        };
 
         if (!id)
             reqAPI('create', params);

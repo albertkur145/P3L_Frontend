@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/template-transaksi.css">
+    <link rel="stylesheet" href="../css/transaksi-produk-create.css">
+
+    <title>Kouvee Pet Shop | Transaksi Produk</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app" class="bg-base">
+        <div class="header">
+            <!-- template from js -->
+        </div>
+
+        <div class="content">
+            <div class="nav-left">
+                <!-- template from js -->
+            </div>
+
+            <div class="data-content">
+                <div class="head">
+                    <!-- template from js -->
+                </div>
+
+                <div class="datas">
+
+                    <!-- append from js req api -->
+
+                </div>
+
+                <div class="data-empty">
+                    Data tidak ditemukan <i class="far fa-frown ml-1"></i>
+                </div>
+
+                <div class="access-denied">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Akses ditolak
+                </div>
+            </div>
+
+            <div class="section-right">
+                <p class="title"><i class="fas fa-shopping-cart mr-2"></i>Keranjang</p>
+
+                <div class="cart-data">
+
+                    <!-- append from js -->
+
+                </div>
+
+                <div class="cart-empty">Keranjang masih kosong <i class="far fa-sad-tear ml-1"></i></div>
+                <button class="confirm" onclick="buyNow()">Beli (0)</button>
+            </div>
+        </div>
+    </div>
+    <!-- app -->
+
+    <!-- member or not -->
+    <div class="modal fade" id="modal-choice" tabindex="-1" role="dialog" aria-labelledby="modalChoiceTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalChoiceTitle">Pilih status customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary mr-1" style="width: 47%; padding: 1rem; font-weight: 500;" onclick="showSelectMember()">Saya adalah member</button>
+                    <button type="button" class="btn btn-success ml-1" style="width: 47%; padding: 1rem; font-weight: 500;" onclick="showFormCustomer()">Saya pelanggan biasa</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- member or not -->
+
+    <!-- modal select member -->
+    <div class="modal fade" id="select-member" tabindex="-1" role="dialog" aria-labelledby="memberLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberLabel">Pilih member</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="form-group">
+                            <select id="member" class="form-control">
+                                <!-- append from js req api -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="validateFormMember()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal select member -->
+
+    <!-- modal form customer -->
+    <div class="modal fade" id="form-customer" tabindex="-1" role="dialog" aria-labelledby="customerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerLabel">Data customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="form-check text-right" style="margin-top: -0.5rem; margin-bottom: 0.5rem;">
+                            <input class="form-check-input" type="checkbox" id="is-member" style="margin-top: 0.375rem;" checked>
+                            <label class="form-check-label" for="is-member">Daftar sebagai member</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nama">Nama lengkap</label>
+                            <input type="text" class="form-control" id="nama" autocomplete="off" onkeyup="hideInputError()">
+                            <small class="form-text text-muted nama-error">Nama lengkap tidak valid.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" autocomplete="off" onkeyup="hideInputError()">
+                            <small class="form-text text-muted alamat-error">Alamat tidak valid.</small>
+                        </div>
+
+                        <div class="form-row tanggal-lahir">
+                            <div class="form-group col-12 txt-tanggal-lahir" style="margin-bottom: 0">
+                                <label>Tanggal Lahir</label>
+                            </div>
+
+                            <div class="form-group col-12 opt-tanggal-lahir">
+                                <select id="tanggal" class="form-control">
+                                    <!-- tanggal lahir append js -->
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 opt-tanggal-lahir">
+                                <select id="bulan" class="form-control">
+                                    <option value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12 opt-tanggal-lahir">
+                                <select id="tahun" class="form-control">
+                                    <!-- tahun lahir append js -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="margin-top: -0.75rem;">
+                            <div class="form-group col-12">
+                                <small class="form-text text-muted ttl-error">Format tanggal lahir tidak valid.</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nohp">No. handphone</label>
+                            <input type="number" class="form-control" id="nohp" autocomplete="off" onkeyup="hideInputError()">
+                            <small class="form-text text-muted nohp-error">No. handphone tidak valid.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="validateFormCustomer()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal form customer -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-transaksi.js"></script>
+    <script src="../js/transaksi-produk-create.js"></script>
+</body>
+</html>

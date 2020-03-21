@@ -5,7 +5,7 @@ const headerTransaksi = `
 `;
 
 const navLeftTransaksi = `
-    <a href="transaksi-produk.html" class="tab tab-produk"><i class="fas fa-box-open mr-2"></i>Produk</a>
+    <a href="transaksi-produk-create.html" class="tab tab-produk"><i class="fas fa-box-open mr-2"></i>Produk</a>
     <a href="javascript:void(0)" class="tab tab-layanan"><i class="fas fa-cut mr-2"></i>Layanan</a>
     <a href="member.html" class="tab tab-member"><i class="fas fa-users mr-2"></i>Member</a>
     <a href="hewan.html" class="tab tab-hewan"><i class="fas fa-dog mr-2"></i>Hewan</a>
