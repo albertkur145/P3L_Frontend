@@ -112,12 +112,12 @@
 
                             <div class="form-group">
                                 <label for="kembalian">Kembalian</label>
-                                <input type="text" class="form-control" id="kembalian" autocomplete="off" disabled>
+                                <input type="text" class="form-control" id="kembalian" autocomplete="off" value="-" disabled>
                                 <small class="form-text text-muted kembalian-error">Uang bayar tidak valid.</small>
                             </div>
                         </div>
 
-                        <button class="btn-bayar">Bayar Sekarang</button>
+                        <button class="btn-bayar" onclick="postPembayaran()">Bayar Sekarang</button>
                     </div>
                 
                     <div class="access-cashier-only">

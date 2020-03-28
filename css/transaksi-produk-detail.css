@@ -81,7 +81,7 @@
     }
 
     #app .section-right .pembayaran .data {
-        display: block;
+        display: none;
     }
 
         #app .section-right .pembayaran .data table {

@@ -2,6 +2,7 @@
 // variable global
 let noTransaksi = null;
 let dataTransaksi = null;
+let codeBayar = null;
 
 function logout() {
     localStorage.removeItem('pegawai');
@@ -14,6 +15,9 @@ function tabActive() {
 
 function hidePopup() {
     $('.popup-message').css('display', 'none');
+
+    if (codeBayar == 200)
+        window.location.href = `${BASE_URL}transaksi-produk.html`;
 }
 
 function generateRupiah(angka) {
@@ -166,6 +170,39 @@ function setData(data) {
     setPembayaran(data.pembayaran);
 }
 
+function postPembayaran() {
+    if (parseInt(kembalian.val().split(' ')[1].split('.').join('')) >= 0) {
+        $('.loading').css('display', 'flex');
+        let params = {
+            'no_transaksi': noTransaksi,
+            'pegawai_id': JSON.parse(localStorage.getItem('pegawai')).id
+        }
+
+        $.ajax({
+            url: `${API}PembayaranProduk`,
+            type: 'post',
+            dataType: 'json',
+
+            data: params,
+
+            success: function(response) {
+                $('.loading').css('display', 'none');
+                if (response.code === 200) {
+                    codeBayar = 200;
+                    $('.popup-message .message p').text('Sukses melakukan pembayaran');
+                    $('.popup-message').css('display', 'flex');
+                }
+            },
+            
+            error: function() {
+                $('.loading').css('display', 'none');
+                $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+                $('.popup-message').css('display', 'flex');
+            }
+        });
+    }
+}
+
 function getData(noTransaksi) {
     $('.loading').css('display', 'flex');
     $.ajax({
@@ -183,6 +220,12 @@ function getData(noTransaksi) {
                 dataTransaksi = response.data[0];
                 setData(response.data[0]);
             }
+        },
+        
+        error: function() {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
         }
     });
 }
@@ -203,6 +246,15 @@ $(document).ready(() => {
     if (pegawai) {
         if (!noTransaksi)
             window.location.href = `${BASE_URL}transaksi-produk.html`;
+        
+        if (pegawai.role_name === 'CS') {
+            $('#app .section-right .pembayaran .data').css('display', 'none');
+            $('#app .section-right .pembayaran .access-cashier-only').css('display', 'block');
+        }
+        else {
+            $('#app .section-right .pembayaran .data').css('display', 'block');
+            $('#app .section-right .pembayaran .access-cashier-only').css('display', 'none');
+        }
 
         getData(noTransaksi);
     } else {

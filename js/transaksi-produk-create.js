@@ -198,6 +198,7 @@ function postCustomer(params) {
         },
 
         error: function() {
+            $('.loading').css('display', 'none');
             $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');
         }

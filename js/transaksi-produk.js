@@ -41,7 +41,7 @@ function getByNoTransaksi(noTransaksi) {
 function getAll() {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk`,
+        url: `${API}TransaksiProduk/uncomplete`,
         type: 'get',
         dataType: 'json',
 
