@@ -14,14 +14,5 @@ const navLeftTransaksi = `
     <p onclick="logout()" class="tab tab-transaksi-layanan"><i class="fas fa-power-off mr-2"></i>Keluar</p>
 `;
 
-const searchPageTransaksi = `
-    <div class="search">
-        <span><i class="fas fa-search"></i></span>
-        <input type="text" autocomplete="off" placeholder="Bingung ya? Cari aja disini..." onkeyup="searchData()">
-        <button class="cari" onclick="searchData()">Cari</button>
-    </div>
-`
-
 $('#app .header').html(headerTransaksi);
 $('#app .content .nav-left').html(navLeftTransaksi);
-$('#app .content .data-content .head').html(searchPageTransaksi);

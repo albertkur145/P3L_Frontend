@@ -2,6 +2,8 @@
 // variable global
 let num;
 let timeout = null;
+let idCustomer = null;
+let noTransaksi = null;
 
 function logout() {
     localStorage.removeItem('pegawai');
@@ -24,6 +26,9 @@ function tabActive() {
 
 function hidePopup() {
     $('.popup-message').css('display', 'none');
+
+    if (idCustomer && noTransaksi)
+        window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
 }
 
 function showMessageConfirm(id) {
@@ -179,8 +184,11 @@ function reqAPI(type, params) {
             if (response.code === 200) {
                 $('.popup-message .message p').text('Berhasil menyimpan customer');
                 $('.popup-message').css('display', 'flex');
-                resetForm();
-                getAllData();
+
+                if (!idCustomer && !noTransaksi) {
+                    resetForm();
+                    getAllData();
+                }
             }
         },
 
@@ -197,12 +205,13 @@ function setTable(data) {
     table.html('');
 
     data.forEach((value, i) => {
+        let ttl = value.tanggal_lahir.split('-');
         table.append(`
             <tr>
                 <th>${num}</th>
                 <td>${value.nama}</td>
                 <td>${value.alamat}</td>
-                <td>${value.tanggal_lahir}</td>
+                <td>${ttl[2]}-${ttl[1]}-${ttl[0]}</td>
                 <td>${value.no_hp}</td>
                 <td><i class="fas fa-pen edit" onclick="getDataByID(${value.id})"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
@@ -326,7 +335,7 @@ function getDataByID(id) {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/member`,
+        url: `${API}Customer`,
         type: 'get',
         dataType: 'json',
         data: {
@@ -364,12 +373,25 @@ function setForm(value) {
 $(document).ready(() => {
     let pegawai = JSON.parse(localStorage.getItem('pegawai'));
 
+    if (window.location.search) {
+        let params = window.location.search.substring(1).split('&');
+        idCustomer = params[0].split('=')[1];
+        noTransaksi = params[1].split('=')[1];
+    }
+
     if (pegawai) {
-        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
-            getAllData();
-        else {
-            $('#app .content .data-content .access-denied').css('display', 'block');
-            $('#app .section-right .form').css('display', 'none');
+        if (idCustomer) {
+            getDataByID(idCustomer);
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
+                getAllData();
+            }
+        } else {
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
+                getAllData();
+            } else {
+                $('#app .content .data-content .access-denied').css('display', 'block');
+                $('#app .section-right .form').css('display', 'none');
+            }
         }
     } else {
         window.location.href = `${BASE_URL}cpanel.html`;

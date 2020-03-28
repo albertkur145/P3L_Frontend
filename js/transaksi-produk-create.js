@@ -1,7 +1,8 @@
 
-
+// variable global
 let cart = [];
 let timeout = null;
+let noTransaksi = null;
 
 function logout() {
     localStorage.removeItem('pegawai');
@@ -209,7 +210,7 @@ function addToCart(e) {
     let nama = $(e).data('nama');
 
     // cari data tersebut sudah ada atau belum
-    let data = cart.find(el => el.id === id);
+    let data = cart.find(el => el.id == id);
 
     // jika belum, push ke array / cart
     // jika sudah, tambahkan jumlah beli sebelumnya
@@ -221,7 +222,7 @@ function addToCart(e) {
         });
     } else {
         cart.forEach(value => {
-            if (value.id === id) {
+            if (value.id == id) {
                 value.jumlah = parseInt($(`#app .content .section-right .cart-data #${id}`).val()) + 1;
             }
         });
@@ -248,7 +249,7 @@ function setCart(cart) {
 }
 
 function remove(id) {
-    const data = cart.findIndex(el => el.id === id);
+    const data = cart.findIndex(el => el.id == id);
     cart.splice(data, 1);
 
     setCart(cart);
@@ -334,6 +335,10 @@ function getAll() {
             $('.loading').css('display', 'none');
             if (response.code === 200) 
                 setLayout(response.data);
+        },
+
+        error: function() {
+            $('.loading').css('display', 'none');
         }
     });
 }
@@ -421,8 +426,12 @@ function buyNow() {
             $('.popup-message .message p').text('Jumlah beli harus lebih dari 0');
             $('.popup-message').css('display', 'flex');
         } else {
-            $('#modal-choice').modal({backdrop: 'static', show: true});
-            getAllMember();
+            if (!noTransaksi) {
+                $('#modal-choice').modal({backdrop: 'static', show: true});
+                getAllMember();
+            } else {
+                updateTransaksi();
+            }
         }
     }
 }
@@ -437,6 +446,39 @@ function amountInvalid() {
     return false;
 }
 
+function getByNoTransaksi(noTransaksi) {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}TransaksiProduk`,
+        type: 'get',
+        dataType: 'json',
+
+        data: {
+            'no_transaksi': noTransaksi
+        },
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200) {
+                setDataCart(response.data[0].produk);
+            }
+        }
+    });
+}
+
+function setDataCart(produk) {
+    produk.forEach(value => {
+        cart.push({
+            'id': value.id,
+            'nama': value.nama,
+            'jumlah': value.jumlah_beli
+        });
+    });
+    setCart(cart);
+    isCartEmpty();
+    setAmountBuy();
+}
+
 function postTransaksi(params) {
     $('.loading').css('display', 'flex');
     $.ajax({
@@ -449,7 +491,7 @@ function postTransaksi(params) {
         success: function(response) {
             $('.loading').css('display', 'none');
             if (response.code === 200) {
-                window.location.href = `${BASE_URL}transaksi-produk-create.html`;
+                window.location.href = `${BASE_URL}transaksi-produk.html`;
             }
         },
 
@@ -461,14 +503,73 @@ function postTransaksi(params) {
     });
 }
 
+function updateTransaksi() {
+    $('.loading').css('display', 'flex');
+
+    let produk = [];
+    cart.forEach(value => {
+        produk.push({
+            'produk_id': value.id,
+            'jumlah': value.jumlah
+        });
+    });
+
+    let params = {
+        'no_transaksi': noTransaksi,
+        'pegawai_id': JSON.parse(localStorage.getItem('pegawai')).id,
+        'produk': produk
+    };
+
+    $.ajax({
+        url: `${API}TransaksiProduk/update`,
+        type: 'post',
+        dataType: 'json',
+
+        data: params,
+
+        success: function(response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200) {
+                window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
+            }
+        },
+
+        error: function() {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
+        }
+    });
+}
+
+function updateJumlahProduk(params) {
+    $.ajax({
+        url: `${API}TransaksiProduk/updateAmount`,
+        type: 'post',
+        dataType: 'json',
+
+        data: params,
+
+        succcess: function(response) {
+            console.log(response);
+        }
+    });
+}
+
 $(document).ready(() => {
     let pegawai = JSON.parse(localStorage.getItem('pegawai'));
+    noTransaksi = window.location.search.substring(1);
 
     if (pegawai) {
-        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+        if (noTransaksi) {
             getAll();
-        else
-            $('#app .content .data-content .access-denied').css('display', 'block');
+            getByNoTransaksi(noTransaksi);
+        } else {
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+                getAll();
+            else
+                $('#app .content .data-content .access-denied').css('display', 'block');
+        }
     } else {
         window.location.href = `${BASE_URL}cpanel.html`;
     }

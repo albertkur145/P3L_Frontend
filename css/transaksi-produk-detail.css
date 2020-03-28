@@ -1,0 +1,174 @@
+#app .content .data-content .head .identity {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+    #app .content .data-content .head .identity p {
+        margin-bottom: 0;
+        color: #EE5253;
+        font-weight: 500;
+    }
+
+    #app .content .data-content .head .identity .date {
+        margin-bottom: 0;
+        color: #EE5253;
+        font-weight: 500;
+    }
+
+#app .content .data-content .datas .information {
+    display: flex;
+}
+
+    #app .content .data-content .datas .information .edit,
+    #app .content .data-content .datas .customer .edit {
+        color: #1DD1A1;
+        font-size: 0.9375rem;
+        cursor: pointer;
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    #app .content .data-content .datas .information .produk {
+        width: 100%;
+        padding: 1rem;
+        color: #333;
+        background-color: #FFF;
+        position: relative;
+    }
+
+        #app .content .data-content .datas .information .produk .title {
+            color: #333;
+            text-align: center;
+            font-size: 1.0625rem;
+        }
+
+        #app .content .data-content .datas .information .produk table {
+            font-size: 0.875rem;
+        }
+
+        #app .content .data-content .datas .information .produk table th {
+            font-weight: 500;
+        }
+
+#app .content .data-content .datas .customer {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background-color: #FFF;
+    position: relative;
+}
+
+    #app .content .data-content .datas .customer .title {
+        color: #333;
+        text-align: center;
+        font-size: 1.0625rem;
+    }
+
+    #app .content .data-content .datas .customer table {
+        font-size: 0.875rem;
+    }
+
+#app .section-right .pembayaran {
+    margin-top: 0.5rem;
+}
+
+    #app .section-right .pembayaran .title {
+        color: #333;
+        text-align: center;
+        font-size: 1.0625rem;
+    }
+
+    #app .section-right .pembayaran .data {
+        display: block;
+    }
+
+        #app .section-right .pembayaran .data table {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        #app .section-right .pembayaran .data .form {
+            font-size: 0.875rem;
+            margin-top: 1.5rem;
+        }
+
+            #app .section-right .pembayaran .data .form .input-bayar {
+                display: flex;
+                align-items: center;
+            }
+            
+                #app .section-right .pembayaran .data .form .input-bayar .rupiah {
+                    font-size: 1rem;
+                    text-align: center;
+                    width: 10%;
+                }
+
+                #app .section-right .pembayaran .data .form .input-bayar input {
+                    margin-left: 1%;
+                    border: 0;
+                    border-radius: 0;
+                    border-bottom: 0.125rem solid #AAA;
+                    font-size: 0.9375rem;
+                    width: 89%;
+                    padding: 0;
+                }
+
+                #app .section-right .pembayaran .data .form .input-bayar input::-webkit-outer-spin-button,
+                #app .section-right .pembayaran .data .form .input-bayar input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                #app .section-right .pembayaran .data .form .input-bayar input:focus {
+                    box-shadow: none;
+                    border-bottom: 0.125rem solid #2ED573;
+                }
+
+                #app .section-right .pembayaran .data .form input {
+                    font-size: 0.875rem;
+                }
+
+            #app .section-right .pembayaran .data .form small {
+                display: none;
+                font-size: 0.8125rem;
+                color: #EB2F06 !important;
+            }
+
+        #app .section-right .pembayaran .data .btn-bayar {
+            margin-top: 0.25rem;
+            padding: 0.625rem;
+            border: 0;
+            width: 100%;
+            font-size: 0.9375rem;
+            border-radius: 0.25rem;
+            color: #FFF;
+            font-weight: 500;
+            background-color: rgba(30, 144, 255, 0.9);
+            transition: background-color .3s;
+        }
+
+        #app .section-right .pembayaran .data .btn-bayar:hover {
+            background-color: rgba(30, 144, 255, 1.0);
+        }
+
+    #app .section-right .pembayaran .access-cashier-only {
+        display: none;
+        border: 0.0625rem dashed #C23616;
+        color: #C23616;
+        text-align: center;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+.bg-primary-kouvee {
+    background-color: #3498DB !important;
+    color: #FFF;
+}
+
+.bg-muted-kouvee {
+    background-color: #EEE !important;
+    color: #333;
+    font-weight: 500;
+}

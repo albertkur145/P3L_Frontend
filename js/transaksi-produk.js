@@ -18,18 +18,24 @@ function setTable(data) {
     table.html('');
 
     data.forEach((value, i) => {
-        console.log(value.tanggal.split(' '));
+        let datetime = value.tanggal.split(' ');
+        let date = datetime[0].split('-');
+
         table.append(`
             <tr>
                 <th>${i+1}</th>
                 <td>${value.no_transaksi}</td>
-                <td>${value.tanggal.split(' ')[0]}</td>
-                <td>${value.tanggal.split(' ')[1]} WIB</td>
-                <td>${value.status}</td>
-                <td><i class="fas fa-pen edit" onclick="getByNoTransaksi(${value.no_transaksi})"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm(${value.no_transaksi})"></i></td>
+                <td>${date[2]}-${date[1]}-${date[0]}</td>
+                <td>${datetime[1]} WIB</td>
+                <td>${value.status}
+                <td><i class="far fa-eye edit" onclick="getByNoTransaksi('${value.no_transaksi}')"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm(${value.no_transaksi})"></i></td>
             </tr>
         `);
     });
+}
+
+function getByNoTransaksi(noTransaksi) {
+    window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
 }
 
 function getAll() {
@@ -43,6 +49,11 @@ function getAll() {
             $('.loading').css('display', 'none');
             if (response.code === 200)
                 setTable(response.data);
+        },
+
+        error: function() {
+            $('.loading').css('display', 'none');
+            $('#app .data-content .emptyTable').css('display', 'block');
         }
     });
 }
