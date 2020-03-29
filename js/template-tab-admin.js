@@ -83,6 +83,17 @@ const tabLeft = `
                 </a>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12" style="padding: 0;">
+                <a href="log-aktivitas.html" class="tab log-aktivitas-tab">
+                    <div class="row">
+                        <div class="col-1"><i class="fas fa-history"></i></div>
+                        <div class="col-10">Log Aktivitas</div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
     <!-- akhir content tab -->
 `;

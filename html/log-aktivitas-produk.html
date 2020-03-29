@@ -13,10 +13,10 @@
 
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-
     <link rel="stylesheet" href="../css/template-tab-admin.css">
+    <link rel="stylesheet" href="../css/log-aktivitas.css">
 
-    <title>Supplier | Kouvee Pet Shop</title>
+    <title>Log Aktivitas Produk | Kouvee Pet Shop</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 
                     <!-- title -->
                     <div class="col-6">
-                        <p class="title"><i class="fas fa-people-carry mr-2"></i> Supplier</p>
+                        <p class="title"><a href="log-aktivitas.html">Log Aktivitas </a><span class="mr-1 ml-1">></span> Produk</p>
                     </div>
                     <!-- title -->
 
@@ -52,14 +52,11 @@
                     <!-- content -->
                     <div class="col-12 content">
                         <div class="row">
-                            <div class="col-10 search">
+                            <div class="col-12 search">
                                 <div class="input-group">
                                     <input id="keyword" type="text" class="form-control"
                                         placeholder="Cari data kamu disini..." onkeyup="enter()" autocomplete="off">
                                 </div>
-                            </div>
-                            <div class="col-2 tambah">
-                                <a href="supplier-form.html">Tambah</a>
                             </div>
                         </div>
 
@@ -67,12 +64,14 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Alamat</th>
-                                        <th scope="col">Kota</th>
-                                        <th scope="col">No HP</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Stok</th>
+                                        <th scope="col">Harga</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Tanggal buat</th>
+                                        <th scope="col">Tanggal ubah</th>
+                                        <th scope="col">Tanggal hapus</th>
+                                        <th scope="col">Pegawai</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,8 +80,6 @@
 
                                 </tbody>
                             </table>
-
-                            <div class="paging text-right mt-2"></div>
                         </div>
 
                         <div class="emptyTable">
@@ -101,6 +98,12 @@
     </div>
     <!-- app -->
 
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
     <!-- popup message -->
     <div class="popup-message">
         <div class="message">
@@ -112,32 +115,13 @@
     </div>
     <!-- akhir popup message -->
 
-    <!-- confirm message -->
-    <div class="confirm-message">
-        <div class="message">
-            <p>Yakin ingin menghapus data ini?</p>
-            <div class="text-right">
-                <button class="cancel" onclick="hideConfirmMessage()">Cancel</button>
-                <button class="confirm">Oke</button>
-            </div>
-        </div>
-    </div>
-    <!-- akhir confirm message -->
 
-    <!-- loading -->
-    <div class="loading">
-        <img src="../icon/anjing.gif">
-    </div>
-    <!-- loading -->
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/template-tab-admin.js"></script>
     <script src="../js/template-logout-admin.js"></script>
-    <script src="../js/supplier.js"></script>
+    <script src="../js/log-aktivitas-produk.js"></script>
 </body>
 
 </html>

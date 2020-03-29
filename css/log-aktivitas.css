@@ -1,0 +1,62 @@
+#app .right .choose-tab {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+#app .right .choose-tab a {
+    display: inline-block;
+    width: 21%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2rem;
+    padding: 1.4375rem 0;
+    font-size: 1.0625rem;
+    border-radius: 0.7rem;
+    text-align: center;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: 500;
+}
+
+.bg-warning-kouvee {
+    background-color: rgba(250, 130, 49, 0.9);
+}
+
+.bg-warning-kouvee:hover {
+    background-color: rgba(250, 130, 49, 1.0);
+}
+
+#app .right .title a,
+#app .right .title span {
+    font-size: 0.9375rem;
+    color: #AAA;
+}
+
+#app .right .content .data th {
+    font-weight: 500;
+}
+
+#app .right .content .data th,
+#app .right .content .data td {
+    font-size: 0.8125rem;
+}
+
+#app .right .content .data td {
+    font-weight: 400;
+}
+
+#app .right .content .search input#keyword {
+    width: 100%;
+    font-size: 0.8125rem;
+}
+
+#app .right .content .search input#keyword:focus {
+    box-shadow: 0 0 0 0.125rem #FFBFD2;
+    border-color: #FFA8C2;
+}
+
+#app .right .content .emptyTable {
+    font-size: 0.875rem;
+}

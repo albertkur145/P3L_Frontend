@@ -49,10 +49,8 @@ function setTable(data) {
                 <td>${value.nama}</td>
                 <td>${value.stock}</td>
                 <td>Rp ${generateRupiah(value.harga)}</td>
-                <td>${value.created_at}</td>
-                <td>${value.updated_at}</td>
                 <td>${value.kategori_name}</td>
-                <td><a href="${BASE_URL}produk-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
+                <td class="text-right"><a href="${BASE_URL}produk-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
         `);
         num += 1;

@@ -52,8 +52,6 @@ function setTable(data) {
                 <td>${value.no_hp}</td>
                 <td>${value.username}</td>
                 <td>${value.role_name}</td>
-                <td>${value.created_at}</td>
-                <td>${value.updated_at}</td>
                 <td><a href="${BASE_URL}pegawai-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
         `);

@@ -33,9 +33,7 @@ function setTable(data) {
             <tr>
                 <th>${num}</th>
                 <td>${value.nama}</td>
-                <td>${value.created_at}</td>
-                <td>${value.updated_at}</td>
-                <td><a href="${BASE_URL}jenis-hewan-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
+                <td class="text-right"><a href="${BASE_URL}jenis-hewan-form.html?${value.id}"><i class="fas fa-pen edit"></i></a> <i class="fas fa-times delete ml-1" style="font-size: 1.1875rem; cursor: pointer;" onclick="showMessageConfirm(${value.id})"></i></td>
             </tr>
         `);
         num += 1;
@@ -79,31 +77,6 @@ function deleteData(id) {
         }
     });
 }
-
-// function getAllData() {
-//     $('.loading').css('display', 'flex');
-
-//     $.ajax({
-//         url: `${API}JenisHewan`,
-//         type: 'get',
-//         dataType: 'json',
-
-//         success: function(response) {
-//             $('.loading').css('display', 'none');
-//             if (response.code === 200) {
-//                 setTable(response.data);
-//             }
-//         },
-
-//         error: function (response) {
-//             $('.loading').css('display', 'none');
-//             if (response.responseJSON.code === 404) {
-//                 $('#app .right .content .data .table tbody').html('');
-//                 $('#app .right .content .emptyTable').css('display', 'block');
-//             }
-//         }
-//     });
-// }
 
 function getAllData(page = 1) {
     $('.loading').css('display', 'flex');
