@@ -95,31 +95,6 @@ function deleteData(id) {
     });
 }
 
-// function getAllData() {
-//     $('.loading').css('display', 'flex');
-
-//     $.ajax({
-//         url: `${API}Produk`,
-//         type: 'get',
-//         dataType: 'json',
-
-//         success: function (response) {
-//             $('.loading').css('display', 'none');
-//             if (response.code === 200) {
-//                 setTable(response.data);
-//             }
-//         },
-
-//         error: function (response) {
-//             $('.loading').css('display', 'none');
-//             if (response.responseJSON.code === 404) {
-//                 $('#app .right .content .data .table tbody').html('');
-//                 $('#app .right .content .emptyTable').css('display', 'block');
-//             }
-//         }
-//     });
-// }
-
 function getAllData(page = 1) {
     $('.loading').css('display', 'flex');
     num = (page * 10) - 9;

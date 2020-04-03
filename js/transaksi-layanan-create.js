@@ -3,6 +3,29 @@
 let cart = [];
 let timeout = null;
 let noTransaksi = null;
+let hewanId = null;
+
+// form customer
+const form = $('#form-customer .form');
+const nama = $('#nama', form);
+const alamat = $('#alamat', form);
+const tanggal = $('#tanggal-customer', form);
+const bulan = $('#bulan-customer', form);
+const tahun = $('#tahun-customer', form);
+const nohp = $('#nohp', form);
+const isMember = $('#is-member', form);
+const regexHP = /^08[0-9]{8,10}$/;
+
+// form hewan
+const formHewan = $('#form-hewan .form');
+const namaHewan = $('#nama-hewan', formHewan);
+const tanggalHewan = $('#tanggal-hewan', formHewan);
+const bulanHewan = $('#bulan-hewan', formHewan);
+const tahunHewan = $('#tahun-hewan', formHewan);
+const ukuranHewan = $('#ukuran-hewan', formHewan);
+const jenisHewan = $('#jenis-hewan', formHewan);
+const isHewan = $('#is-hewan', formHewan);
+const pilihHewan = $('#hewan', formHewan);
 
 function logout() {
     localStorage.removeItem('pegawai');
@@ -10,23 +33,23 @@ function logout() {
 }
 
 function tabActive() {
-    $('.tab-produk').addClass('tab-active');
+    $('.tab-layanan').addClass('tab-active');
 }
 
 function appendTTL() {
     for (let i = 1950; i <= 2020; i++) {
-        $('.form select#tahun').append(`
+        $('.form select.tahun').append(`
             <option value="${i}">${i}</option>
         `);
     }
 
     for (let i = 1; i <= 31; i++) {
         if (i <= 9) {
-            $('.form select#tanggal').append(`
+            $('.form select.tanggal').append(`
                 <option value="0${i}">${i}</option>
             `);
         } else {
-            $('.form select#tanggal').append(`
+            $('.form select.tanggal').append(`
                 <option value="${i}">${i}</option>
             `);
         }
@@ -39,27 +62,22 @@ function hidePopup() {
 
 function showFormCustomer() {
     $('#modal-choice').modal('hide');
-    $('#form-customer').modal({backdrop: 'static', show: true});
+    $('#form-customer').modal({
+        backdrop: 'static',
+        show: true
+    });
 }
 
 function showSelectMember() {
     $('#modal-choice').modal('hide');
-    $('#select-member').modal({backdrop: 'static', show: true});
+    $('#select-member').modal({
+        backdrop: 'static',
+        show: true
+    });
 }
 
-// form customer
-const form = $('#form-customer .form');
-const nama = $('#nama', form);
-const alamat = $('#alamat', form);
-const tanggal = $('#tanggal', form);
-const bulan = $('#bulan', form);
-const tahun = $('#tahun', form);
-const nohp = $('#nohp', form);
-const isMember = $('#is-member', form);
-const regexHP = /^08[0-9]{8,10}$/;
-
-$('#is-member').change(function() {
-    if(this.checked) {
+$('#is-member').change(function () {
+    if (this.checked) {
         nama.removeAttr('disabled');
         alamat.removeAttr('disabled');
         tanggal.removeAttr('disabled');
@@ -98,6 +116,12 @@ function hideInputError() {
     $('.nohp-error', form).css('display', 'none');
 }
 
+function hideInputErrorHewan() {
+    $('.nama-hewan-error', formHewan).css('display', 'none');
+    $('.ttl-hewan-error', formHewan).css('display', 'none');
+    $('.pilih-hewan-error', formHewan).css('display', 'none');
+}
+
 tanggal.focusout(() => {
     $('.ttl-error', form).css('display', 'none');
 });
@@ -110,13 +134,29 @@ tahun.focusout(() => {
     $('.ttl-error', form).css('display', 'none');
 });
 
+tanggalHewan.focusout(() => {
+    $('.ttl-hewan-error', formHewan).css('display', 'none');
+});
+
+bulanHewan.focusout(() => {
+    $('.ttl-hewan-error', formHewan).css('display', 'none');
+});
+
+tahunHewan.focusout(() => {
+    $('.ttl-hewan-error', formHewan).css('display', 'none');
+});
+
+pilihHewan.focusout(() => {
+    $('.pilih-hewan-error', formHewan).css('display', 'none');
+});
+
 function validateTanggalLahir(tgl, bln, thn) {
     if (tgl == 31 && !(bln == 1 || bln == 3 || bln == 5 || bln == 7 || bln == 8 || bln == 10 || bln == 12))
         return 0;
 
     if (tgl > 28 && bln == 2) {
         if (tgl == 29 && thn % 4 == 0)
-            return 1; 
+            return 1;
         else
             return 0;
     }
@@ -127,9 +167,9 @@ function validateTanggalLahir(tgl, bln, thn) {
 function validateFormCustomer() {
     let validateTTL = validateTanggalLahir(tanggal.val(), bulan.val(), tahun.val());
 
-    if(isMember.prop('checked')) {
-        if (nama.val().length !== 0 && alamat.val().length !== 0 && 
-        regexHP.test(nohp.val()) && validateTTL === 1) {
+    if (isMember.prop('checked')) {
+        if (nama.val().length !== 0 && alamat.val().length !== 0 &&
+            regexHP.test(nohp.val()) && validateTTL === 1) {
             const params = {
                 "nama": nama.val(),
                 "alamat": alamat.val(),
@@ -149,8 +189,7 @@ function validateFormCustomer() {
 
         if (validateTTL === 0)
             $('.ttl-error', form).css('display', 'block');
-    } 
-    else {
+    } else {
         if (regexHP.test(nohp.val())) {
             const params = {
                 "nama": 'Guest',
@@ -174,30 +213,30 @@ function postCustomer(params) {
         url: `${API}Customer/create`,
         type: 'post',
         dataType: 'json',
-        
+
         data: params,
 
-        success: function(response) {
+        success: function (response) {
             if (response.code === 200) {
-                produk = [];
+                layanan = [];
                 cart.forEach(value => {
-                    produk.push({
-                        'produk_id': value.id,
-                        'jumlah': value.jumlah
+                    layanan.push({
+                        'layanan_id': value.id
                     });
                 });
 
                 dataTransaksi = {
                     'cs_id': JSON.parse(localStorage.getItem('pegawai')).id,
                     'customer_id': response.data[0].id,
-                    'produk': produk
+                    'hewan_id': hewanId,
+                    'layanan': layanan
                 };
 
                 postTransaksi(dataTransaksi);
             }
         },
 
-        error: function() {
+        error: function () {
             $('.loading').css('display', 'none');
             $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');
@@ -214,19 +253,15 @@ function addToCart(e) {
     let data = cart.find(el => el.id == id);
 
     // jika belum, push ke array / cart
-    // jika sudah, tambahkan jumlah beli sebelumnya
+    // jika sudah kasih alert
     if (!data) {
         cart.push({
             'id': id,
-            'nama': nama,
-            'jumlah': 1
+            'nama': nama
         });
     } else {
-        cart.forEach(value => {
-            if (value.id == id) {
-                value.jumlah = parseInt($(`#app .content .section-right .cart-data #${id}`).val()) + 1;
-            }
-        });
+        $('.popup-message .message p').text('Layanan sudah ada di keranjang');
+        $('.popup-message').css('display', 'flex');
     }
 
     setCart(cart);
@@ -242,7 +277,6 @@ function setCart(cart) {
         cartData.append(`
             <div class="data">
                 <label for="${value.id}" class="judul">${value.nama}</label>
-                <input type="number" id="${value.id}" value=${value.jumlah} data-id="${value.id}" onkeyup="setAmountBuy()">
                 <span class="hapus" onclick="remove(${value.id})"><i class="fas fa-trash"></i></span>
             </div>
         `);
@@ -273,14 +307,9 @@ function generateRupiah(angka) {
 }
 
 function setAmountBuy() {
-    // update cart terlebih dahulu sesuai input
-    cart.forEach(value => {
-        value.jumlah = parseInt($(`#app .content .section-right .cart-data #${value.id}`).val());
-    });
-
     let jumlah = 0;
     cart.forEach(value => {
-        jumlah += value.jumlah;
+        jumlah += 1;
     });
 
     $('#app .content .section-right .confirm').text(`Beli (${jumlah})`);
@@ -301,25 +330,24 @@ function appendData(value) {
             <div class="info" style="padding: 0.5rem;">
                 <p class="judul">${value.nama}</p>
                 <p class="harga">Rp ${generateRupiah(value.harga)}</p>
-                <p class="stock">Stok <span>(${value.stock})</span></p>
             </div>
         </div>
     `);
 }
 
 function validateFormMember() {
-    produk = [];
+    layanan = [];
     cart.forEach(value => {
-        produk.push({
-            'produk_id': value.id,
-            'jumlah': value.jumlah
+        layanan.push({
+            'layanan_id': value.id
         });
     });
 
     params = {
         'cs_id': JSON.parse(localStorage.getItem('pegawai')).id,
         'customer_id': $('select#member').val(),
-        'produk': produk
+        'hewan_id': hewanId,
+        'layanan': layanan
     };
 
     postTransaksi(params);
@@ -328,17 +356,17 @@ function validateFormMember() {
 function getAll() {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}Produk`,
+        url: `${API}Layanan`,
         type: 'get',
         dataType: 'json',
 
-        success: function(response) {
+        success: function (response) {
             $('.loading').css('display', 'none');
-            if (response.code === 200) 
+            if (response.code === 200)
                 setLayout(response.data);
         },
 
-        error: function() {
+        error: function () {
             $('.loading').css('display', 'none');
         }
     });
@@ -359,7 +387,7 @@ function searchData() {
 function getByName(nama) {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}Produk`,
+        url: `${API}Layanan`,
         type: 'get',
         dataType: 'json',
 
@@ -367,14 +395,14 @@ function getByName(nama) {
             nama: nama
         },
 
-        success: function(response) {
+        success: function (response) {
             isDataEmpty('flex', 'none');
             $('.loading').css('display', 'none');
-            if (response.code === 200) 
+            if (response.code === 200)
                 setLayout(response.data);
         },
 
-        error: function() {
+        error: function () {
             isDataEmpty('none', 'block');
             $('.loading').css('display', 'none');
         }
@@ -387,12 +415,12 @@ function getAllMember() {
         type: 'get',
         dataType: 'json',
 
-        success: function(response) {
+        success: function (response) {
             if (response.code === 200)
                 setSelectMember(response.data);
         },
 
-        error: function() {
+        error: function () {
             $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');
         }
@@ -423,36 +451,269 @@ function isDataEmpty(disDatas, disEmpty) {
     $('#app .content .data-content .data-empty').css('display', disEmpty);
 }
 
+function resetFormHewan() {
+    namaHewan.val('');
+    tanggalHewan.val('01');
+    bulanHewan.val('01');
+    tahunHewan.val('1950');
+}
+
+function disableCursor(checked) {
+    if (checked) {
+        pilihHewan.attr('disabled', 'disabled');
+        pilihHewan.css('cursor', 'no-drop');
+        pilihHewan.val('');
+        namaHewan.removeAttr('disabled', 'disabled');
+        namaHewan.css('cursor', 'inherit');
+        tanggalHewan.removeAttr('disabled', 'disabled');
+        tanggalHewan.css('cursor', 'inherit');
+        bulanHewan.removeAttr('disabled', 'disabled');
+        bulanHewan.css('cursor', 'inherit');
+        tahunHewan.removeAttr('disabled', 'disabled');
+        tahunHewan.css('cursor', 'inherit');
+        ukuranHewan.removeAttr('disabled', 'disabled');
+        ukuranHewan.css('cursor', 'inherit');
+        jenisHewan.removeAttr('disabled', 'disabled');
+        jenisHewan.css('cursor', 'inherit');
+    } else {
+        pilihHewan.removeAttr('disabled');
+        pilihHewan.css('cursor', 'inherit');
+        namaHewan.attr('disabled', 'disabled');
+        namaHewan.css('cursor', 'no-drop');
+        tanggalHewan.attr('disabled', 'disabled');
+        tanggalHewan.css('cursor', 'no-drop');
+        bulanHewan.attr('disabled', 'disabled');
+        bulanHewan.css('cursor', 'no-drop');
+        tahunHewan.attr('disabled', 'disabled');
+        tahunHewan.css('cursor', 'no-drop');
+        ukuranHewan.attr('disabled', 'disabled');
+        ukuranHewan.css('cursor', 'no-drop');
+        jenisHewan.attr('disabled', 'disabled');
+        jenisHewan.css('cursor', 'no-drop');
+    }
+
+    resetFormHewan();
+}
+
+$('#is-hewan').change(function() {
+    hideInputErrorHewan();
+    if(this.checked)
+        disableCursor(1);
+    else
+        disableCursor(0);
+});
+
+$('#hewan').change(function() {
+    if (pilihHewan.val().length !== 0) 
+        getHewanByID(pilihHewan.val());
+    else
+        resetFormHewan();
+});
+
+function getHewanByID(id) {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}Hewan`,
+        type: 'get',
+        dataType: 'json',
+
+        data: {
+            'id': id
+        },
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200) 
+                setFormHewan(response.data[0]);
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
+        }
+    });
+}
+
+function setFormHewan(value) {
+    let ttl = value.tanggal_lahir.split('-');
+    namaHewan.val(value.nama);
+    tanggalHewan.val(ttl[2]);
+    bulanHewan.val(ttl[1]);
+    tahunHewan.val(ttl[0]);
+    ukuranHewan.val(value.ukuran_id);
+    jenisHewan.val(value.jenis_id);
+}
+
 function buyNow() {
     if (cart.length > 0) {
-        if (amountInvalid()) {
-            $('.popup-message .message p').text('Jumlah beli harus lebih dari 0');
-            $('.popup-message').css('display', 'flex');
+        if (!noTransaksi) {
+            $('#form-hewan').modal({
+                backdrop: 'static',
+                show: true
+            });
+            getAllUkuran();
+            getAllJenis();
+            getAllHewan();
         } else {
-            if (!noTransaksi) {
-                $('#modal-choice').modal({backdrop: 'static', show: true});
-                getAllMember();
-            } else {
-                updateTransaksi();
-            }
+            updateTransaksi();
         }
     }
 }
 
-function amountInvalid() {
-    for (let i = 0; i < cart.length; i++) {
-        let jumlah = parseInt(cart[i].jumlah);
-        if (jumlah <= 0 || isNaN(jumlah))
-            return true;
-    }
+function validateFormHewan() {
+    let validateTTL = validateTanggalLahir(tanggalHewan.val(), bulanHewan.val(), tahunHewan.val());
 
-    return false;
+    if (isHewan.prop('checked')) {
+        if (namaHewan.val().length !== 0 && validateTTL === 1) {
+            const params = {
+                "nama": namaHewan.val(),
+                "tanggal_lahir": tahunHewan.val() + "-" + bulanHewan.val() + "-" + tanggalHewan.val(),
+                "ukuran_id": ukuranHewan.val(),
+                "jenis_id": jenisHewan.val(),
+                "pegawai_id": JSON.parse(localStorage.getItem('pegawai')).id,
+            };
+            $('#form-hewan').modal('hide');
+            postHewan(params);
+        }
+
+        if (namaHewan.val().length === 0)
+            $('.nama-hewan-error', formHewan).css('display', 'block');
+
+        if (validateTTL === 0)
+            $('.ttl-hewan-error', formHewan).css('display', 'block');
+    } else {
+        if (pilihHewan.val().length !== 0) {
+            $('#form-hewan').modal('hide');
+            $('#modal-choice').modal({
+                backdrop: 'static',
+                show: true
+            });
+            getAllMember();
+            hewanId = pilihHewan.val();
+        }
+
+        if (pilihHewan.val().length === 0) {
+            $('.pilih-hewan-error', formHewan).css('display', 'block');
+        }
+    }
+}
+
+function postHewan(params) {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}Hewan/create`,
+        type: 'post',
+        dataType: 'json',
+
+        data: params,
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200) {
+                $('#modal-choice').modal({
+                    backdrop: 'static',
+                    show: true
+                });
+                getAllMember();
+                hewanId = response.data[0].id;
+            }
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+            $('.popup-message').css('display', 'flex');
+        }
+    });
+}
+
+function getAllUkuran() {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}UkuranHewan`,
+        type: 'get',
+        dataType: 'json',
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200)
+                setSelectedUkuran(response.data);
+        }
+    });
+}
+
+function setSelectedUkuran(data) {
+    let select = $('select#ukuran-hewan');
+    select.html(``);
+
+    data.forEach(value => {
+        select.append(`
+            <option value="${value.id}">${value.nama}</option>
+        `);
+    });
+}
+
+function getAllJenis() {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}JenisHewan`,
+        type: 'get',
+        dataType: 'json',
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200)
+                setSelectedJenis(response.data);
+        }
+    });
+}
+
+function setSelectedJenis(data) {
+    let select = $('select#jenis-hewan');
+    select.html(``);
+
+    data.forEach(value => {
+        select.append(`
+            <option value="${value.id}">${value.nama}</option>
+        `);
+    });
+}
+
+function getAllHewan() {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}Hewan`,
+        type: 'get',
+        dataType: 'json',
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            if (response.code === 200)
+                setSelectedHewan(response.data);
+        }
+    });
+}
+
+function setSelectedHewan(data) {
+    let select = $('select#hewan');
+    select.html(``);
+
+    select.append(`
+        <option value="">-- PILIH HEWAN --</option>
+    `);
+
+    data.forEach(value => {
+        select.append(`
+            <option value="${value.id}">${value.nama}</option>
+        `);
+    });
 }
 
 function getByNoTransaksi(noTransaksi) {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk`,
+        url: `${API}TransaksiLayanan`,
         type: 'get',
         dataType: 'json',
 
@@ -463,18 +724,17 @@ function getByNoTransaksi(noTransaksi) {
         success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200) {
-                setDataCart(response.data[0].produk);
+                setDataCart(response.data[0].layanan);
             }
         }
     });
 }
 
-function setDataCart(produk) {
-    produk.forEach(value => {
+function setDataCart(layanan) {
+    layanan.forEach(value => {
         cart.push({
             'id': value.id,
-            'nama': value.nama,
-            'jumlah': value.jumlah_beli
+            'nama': value.nama
         });
     });
     setCart(cart);
@@ -485,20 +745,20 @@ function setDataCart(produk) {
 function postTransaksi(params) {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk/create`,
+        url: `${API}TransaksiLayanan/create`,
         type: 'post',
         dataType: 'json',
 
         data: params,
 
-        success: function(response) {
+        success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200) {
-                window.location.href = `${BASE_URL}transaksi-produk.html`;
+                window.location.href = `${BASE_URL}transaksi-layanan.html`;
             }
         },
 
-        error: function() {
+        error: function () {
             $('.loading').css('display', 'none');
             $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');
@@ -509,35 +769,34 @@ function postTransaksi(params) {
 function updateTransaksi() {
     $('.loading').css('display', 'flex');
 
-    let produk = [];
+    let layanan = [];
     cart.forEach(value => {
-        produk.push({
-            'produk_id': value.id,
-            'jumlah': value.jumlah
+        layanan.push({
+            'layanan_id': value.id
         });
     });
 
     let params = {
         'no_transaksi': noTransaksi,
         'pegawai_id': JSON.parse(localStorage.getItem('pegawai')).id,
-        'produk': produk
+        'layanan': layanan
     };
 
     $.ajax({
-        url: `${API}TransaksiProduk/update`,
+        url: `${API}TransaksiLayanan/update`,
         type: 'post',
         dataType: 'json',
 
         data: params,
 
-        success: function(response) {
+        success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200) {
-                window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
+                window.location.href = `${BASE_URL}transaksi-layanan-detail.html?${noTransaksi}`;
             }
         },
 
-        error: function() {
+        error: function () {
             $('.loading').css('display', 'none');
             $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
             $('.popup-message').css('display', 'flex');

@@ -1,4 +1,3 @@
-
 // variable global
 let timeout = null;
 
@@ -8,12 +7,12 @@ function logout() {
 }
 
 function tabActive() {
-    $('.tab-transaksi-produk').addClass('tab-active');
+    $('.tab-transaksi-layanan').addClass('tab-active');
 }
 
 function hidePopup() {
     $('.popup-message').css('display', 'none');
-    window.location.href = `${BASE_URL}transaksi-produk.html`;
+    window.location.href = `${BASE_URL}transaksi-layanan.html`;
 }
 
 function showMessageConfirm(noTransaksi) {
@@ -57,13 +56,13 @@ function setTable(data) {
 }
 
 function getByNoTransaksi(noTransaksi) {
-    window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
+    window.location.href = `${BASE_URL}transaksi-layanan-detail.html?${noTransaksi}`;
 }
 
 function deleteData(noTransaksi) {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk/delete`,
+        url: `${API}TransaksiLayanan/delete`,
         type: 'post',
         dataType: 'json',
 
@@ -92,17 +91,17 @@ function deleteData(noTransaksi) {
 function getAll() {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk/uncomplete`,
+        url: `${API}TransaksiLayanan/uncomplete`,
         type: 'get',
         dataType: 'json',
 
-        success: function(response) {
+        success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200)
                 setTable(response.data);
         },
 
-        error: function() {
+        error: function () {
             $('.loading').css('display', 'none');
             $('#app .data-content .emptyTable').css('display', 'block');
         }
@@ -112,7 +111,7 @@ function getAll() {
 function getByName(noTransaksi) {
     $('.loading').css('display', 'flex');
     $.ajax({
-        url: `${API}TransaksiProduk/uncomplete`,
+        url: `${API}TransaksiLayanan/uncomplete`,
         type: 'get',
         dataType: 'json',
 

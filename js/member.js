@@ -11,13 +11,15 @@ function logout() {
 }
 
 function searchData() {
-    const search = $('#app .content .data-content .head .search');
-    const keyword = $('input', search).val();
+    if (JSON.parse(localStorage.getItem('pegawai')).role_name != 'Kasir') {
+        const search = $('#app .content .data-content .head .search');
+        const keyword = $('input', search).val();
 
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-        getByName(keyword);
-    }, 700);
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            getByName(keyword);
+        }, 700);
+    }
 }
 
 function tabActive() {
@@ -27,8 +29,12 @@ function tabActive() {
 function hidePopup() {
     $('.popup-message').css('display', 'none');
 
-    if (idCustomer && noTransaksi)
-        window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
+    if (idCustomer && noTransaksi) {
+        if (noTransaksi.split('-')[0] === 'PR')
+            window.location.href = `${BASE_URL}transaksi-produk-detail.html?${noTransaksi}`;
+        else
+            window.location.href = `${BASE_URL}transaksi-layanan-detail.html?${noTransaksi}`;
+    }
 }
 
 function showMessageConfirm(id) {
@@ -382,13 +388,12 @@ $(document).ready(() => {
     if (pegawai) {
         if (idCustomer) {
             getDataByID(idCustomer);
-            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
                 getAllData();
-            }
         } else {
-            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
                 getAllData();
-            } else {
+            else {
                 $('#app .content .data-content .access-denied').css('display', 'block');
                 $('#app .section-right .form').css('display', 'none');
             }

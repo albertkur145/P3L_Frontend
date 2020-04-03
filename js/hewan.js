@@ -2,6 +2,8 @@
 // variable global
 let num;
 let timeout = null;
+let idHewan = null;
+let noTransaksi = null;
 
 function logout() {
     localStorage.removeItem('pegawai');
@@ -9,13 +11,15 @@ function logout() {
 }
 
 function searchData() {
-    const search = $('#app .content .data-content .head .search');
-    const keyword = $('input', search).val();
+    if (JSON.parse(localStorage.getItem('pegawai')).role_name != 'Kasir') {
+        const search = $('#app .content .data-content .head .search');
+        const keyword = $('input', search).val();
 
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-        getByName(keyword);
-    }, 700);
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            getByName(keyword);
+        }, 700);
+    }
 }
 
 function tabActive() {
@@ -24,6 +28,9 @@ function tabActive() {
 
 function hidePopup() {
     $('.popup-message').css('display', 'none');
+
+    if (idHewan && noTransaksi)
+        window.location.href = `${BASE_URL}transaksi-layanan-detail.html?${noTransaksi}`;
 }
 
 function showMessageConfirm(id) {
@@ -151,8 +158,11 @@ function reqAPI(type, params) {
             if (response.code === 200) {
                 $('.popup-message .message p').text('Berhasil menyimpan hewan');
                 $('.popup-message').css('display', 'flex');
-                resetForm();
-                getAllData();
+
+                if (!idHewan && !noTransaksi) {
+                    resetForm();
+                    getAllData();
+                }
             }
         },
 
@@ -380,15 +390,27 @@ function addOptionUkuran(data) {
 $(document).ready(() => {
     let pegawai = JSON.parse(localStorage.getItem('pegawai'));
 
+    if (window.location.search) {
+        let params = window.location.search.substring(1).split('&');
+        idHewan = params[0].split('=')[1];
+        noTransaksi = params[1].split('=')[1];
+    }
+
     if (pegawai) {
-        if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin') {
-            getAllData();
-            getJenisHewan();
-            getUkuranHewan()
-        }
-        else {
-            $('#app .content .data-content .access-denied').css('display', 'block');
-            $('#app .section-right .form').css('display', 'none');
+        getJenisHewan();
+        getUkuranHewan();
+
+        if (idHewan) {
+            getDataByID(idHewan);
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+                getAllData();
+        } else {
+            if (pegawai.role_name === 'CS' || pegawai.role_name === 'Admin')
+                getAllData();
+            else {
+                $('#app .content .data-content .access-denied').css('display', 'block');
+                $('#app .section-right .form').css('display', 'none');
+            }
         }
     } else {
         window.location.href = `${BASE_URL}cpanel.html`;

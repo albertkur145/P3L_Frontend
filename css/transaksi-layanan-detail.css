@@ -1,0 +1,26 @@
+#app .content .data-content .datas .hewan .edit {
+    color: #1DD1A1;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+#app .content .data-content .datas .hewan {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background-color: #FFF;
+    position: relative;
+}
+
+    #app .content .data-content .datas .hewan .title {
+        color: #333;
+        text-align: center;
+        font-size: 1.0625rem;
+    }
+
+    #app .content .data-content .datas .hewan table {
+        font-size: 0.875rem;
+    }

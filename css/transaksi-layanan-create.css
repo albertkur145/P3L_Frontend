@@ -1,0 +1,63 @@
+#app .content .data-content .datas .data {
+    padding: 0.5rem;
+    transition: .2s ease-out;
+}
+
+    #app .content .data-content .datas .data .img-data {
+        width: 100%;
+        height: 7.75rem;
+    }
+
+    #app .content .data-content .datas .data .judul {
+        font-size: 0.875rem;
+        color: #444;
+        font-weight: 500;
+    }
+
+    #app .content .data-content .datas .data:hover {
+        border: 0.0625rem solid #27AE60;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    #app .content .data-content .datas .data:hover > .img-data {
+        transform: inherit;
+    }
+
+    #app .content .data-content .datas .data .harga {
+        font-size: 0.875rem;
+    }
+
+#app .content .section-right .cart-data .data .judul {
+    font-size: 0.875rem;
+    width: 90%;
+}
+
+#app .content .section-right .cart-data .data .hapus {
+    width: 10%;
+}
+
+#form-hewan .form {
+    margin-top: 0.5rem;
+}
+
+    #form-hewan .form label {
+        font-size: 0.875rem;
+        color: #444;
+    }
+
+    #form-hewan .form input,
+    #form-hewan .form select {
+        font-size: 0.8125rem;
+        width: 100%;
+        color: #333;
+    }
+
+    #form-hewan .form input[type=checkbox] {
+        width: inherit;
+    }
+
+    #form-hewan .form small {
+        display: none;
+        font-size: 0.8125rem;
+        color: #eb2f06 !important;
+    }

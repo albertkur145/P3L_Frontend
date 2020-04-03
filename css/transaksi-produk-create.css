@@ -6,17 +6,17 @@
     #app .content .data-content .datas .data {
         width: 24%;
         margin-right: 1%;
-        margin-bottom: 0.375rem;
+        margin-bottom: 0.5rem;
         padding: 0.25rem;
         border-radius: 0.25rem;
         background-color: #FFF;
+        border: 0.0625rem solid #BBB;
         cursor: pointer;
         overflow: hidden;
     }
 
     #app .content .data-content .datas .data:hover > .img-data {
         transform: scale(1.0625);
-        
     }
 
         #app .content .data-content .datas .data .img-data {
@@ -145,20 +145,17 @@
         background-color: #3742FA;
     }
 
-#form-customer .form,
-#form-member .form {
+#form-customer .form {
     margin-top: 0.5rem;
 }
 
-    #form-customer .form label,
-    #form-member .form label {
+    #form-customer .form label {
         font-size: 0.875rem;
         color: #444;
     }
 
     #form-customer .form input,
-    #form-customer .form select,
-    #form-member .form select {
+    #form-customer .form select {
         font-size: 0.8125rem;
         width: 100%;
         color: #333;
