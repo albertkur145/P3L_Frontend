@@ -1,0 +1,29 @@
+#app .section-right .pegawai {
+    margin-top: 1.25rem;
+}
+
+    #app .section-right .pegawai .title {
+        color: #333;
+        text-align: center;
+        font-size: 1.0625rem;
+    }
+
+        #app .section-right .pegawai .data table {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+#app .section-right .action {
+    margin-top: 1.25rem;
+}
+
+    #app .section-right .action .title {
+        color: #333;
+        text-align: center;
+        font-size: 1.0625rem;
+    }
+
+        #app .section-right .action .data table {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }

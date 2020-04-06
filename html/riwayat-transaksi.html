@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/template-transaksi.css">
+
+    <title>Kouvee Pet Shop | Riwayat Transaksi</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app" class="bg-base">
+        <div class="header">
+            <!-- template from js -->
+        </div>
+
+        <div class="content">
+            <div class="nav-left">
+                <!-- template from js -->
+            </div>
+
+            <div class="data-content">
+
+                <!-- modal pilih riwayat -->
+                <div class="choose-history">
+                    <div class="modal fade" id="historyModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="historyModalLabel">Kamu ingin lihat riwayat apa?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body text-center">
+                                    <button type="button" class="btn btn-success mr-1" style="width: 47%; padding: 1rem; font-weight: 500;" onclick="redirectRiwayatTransaksiProduk()">Transaksi produk</button>
+                                    <button type="button" class="btn btn-primary ml-1" style="width: 47%; padding: 1rem; font-weight: 500;" onclick="redirectRiwayatTransaksiLayanan()">Transaksi layanan</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal pilih riwayat -->
+
+            </div>
+
+            <div class="section-right">
+
+            </div>
+        </div>
+    </div>
+    <!-- app -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-transaksi.js"></script>
+    <script src="../js/riwayat-transaksi.js"></script>
+</body>
+
+</html>

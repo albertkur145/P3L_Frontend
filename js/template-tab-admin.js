@@ -86,6 +86,17 @@ const tabLeft = `
 
         <div class="row">
             <div class="col-12" style="padding: 0;">
+                <a href="transaksi-produk-create.html" class="tab pemesanan-tab" target="_blank">
+                    <div class="row">
+                        <div class="col-1"><i class="fas fa-shopping-basket"></i></div>
+                        <div class="col-10">Transaksi</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" style="padding: 0;">
                 <a href="log-aktivitas.html" class="tab log-aktivitas-tab">
                     <div class="row">
                         <div class="col-1"><i class="fas fa-history"></i></div>
