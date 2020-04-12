@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sen:700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/template-tab-admin.css">
+    <link rel="stylesheet" href="../css/template-form.css">
+    <link rel="stylesheet" href="../css/pemesanan.css">
+
+    <title>Pemesanan | Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app">
+
+        <!-- left -->
+        <div class="left">
+
+            <!-- template tab admin js -->
+
+        </div>
+        <!-- akhir left -->
+
+        <!-- right -->
+        <div class="right">
+            <div class="container">
+                <div class="row">
+
+                    <!-- title -->
+                    <div class="col-6">
+                        <p class="title"><a href="pemesanan.html">Pemesanan</a> <span>></span> Tambah</p>
+                    </div>
+                    <!-- title -->
+
+                    <!-- logout -->
+                    <div class="col-6 logout">
+                        <!-- template logout admin js -->
+                    </div>
+                    <!-- akhir logout -->
+
+                    <!-- content -->
+                    <div class="col-12 content">
+                        <div class="form">
+                            <div class="form-group">
+                                <label for="supplier">Supplier</label>
+
+                                <select id="supplier" class="form-control">
+
+                                    <!-- append from js req api -->
+
+                                </select>
+                            </div>
+
+                            <div class="add-produk-form" data-toggle="tooltip" data-placement="top" title="Tambah form produk" onclick="addProdukForm()"><span>+</span></div>
+
+                            <div class="produk-form produk-form-1">
+                                <span class="minus" onclick="removeProdukForm(1)">x</span>
+                                <div class="form-group">
+                                    <label for="produk-1">Produk</label>
+
+                                    <select id="produk-1" class="form-control produk">
+
+                                        <!-- append from js req api -->
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="satuan-1">Satuan</label>
+                                    <input type="text" class="form-control satuan" id="satuan-1" onkeyup="validateSatuan(this)" autocomplete="off">
+                                    <small class="form-text text-muted satuan-1-error">Satuan tidak valid.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jumlah-1">Jumlah</label>
+                                    <input type="number" class="form-control jumlah" id="jumlah-1" onkeyup="validateJumlah(this)" autocomplete="off">
+                                    <small class="form-text text-muted jumlah-1-error">Jumlah tidak valid.</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button class="simpan mt-4" onclick="validateForm()">Simpan</button>
+                    </div>
+                    <!-- content -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- akhir right -->
+
+    </div>
+    <!-- app -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-tab-admin.js"></script>
+    <script src="../js/template-logout-admin.js"></script>
+    <script src="../js/pemesanan-form.js"></script>
+</body>
+
+</html>

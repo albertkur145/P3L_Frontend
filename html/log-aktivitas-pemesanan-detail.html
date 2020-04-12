@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/template-tab-admin.css">
     <link rel="stylesheet" href="../css/log-aktivitas.css">
 
-    <title>Log Aktivitas | Kouvee Pet Shop</title>
+    <title>Log Aktivitas Pemesanan | Kouvee Pet Shop</title>
 </head>
 
 <body>
@@ -39,7 +39,8 @@
 
                     <!-- title -->
                     <div class="col-6">
-                        <p class="title"><i class="fas fa-history mr-2"></i> Log Aktivitas</p>
+                        <p class="title"><a href="log-aktivitas-pemesanan.html">Kembali </a><span class="mr-1 ml-1"> > </span>
+                            Detail Pesanan</p>
                     </div>
                     <!-- title -->
 
@@ -49,26 +50,51 @@
                     </div>
                     <!-- akhir logout -->
 
-                    <div class="choose-tab">
-                        <a href="log-aktivitas-jenis-hewan.html" class="bg-primary">Jenis hewan</a>
-                        <a href="log-aktivitas-ukuran-hewan.html" class="bg-success">Ukuran hewan</a>
-                        <a href="log-aktivitas-produk.html" class="bg-warning-kouvee">Produk</a>
-                        <a href="log-aktivitas-layanan.html" class="bg-danger">Layanan</a>
-                        <a href="log-aktivitas-pegawai.html" class="bg-danger">Pegawai</a>
-                        <a href="log-aktivitas-supplier.html" class="bg-warning-kouvee">Supplier</a>
-                        <a href="log-aktivitas-customer.html" class="bg-success">Customer</a>
-                        <a href="log-aktivitas-hewan.html" class="bg-primary">Hewan</a>
-                        <a href="log-aktivitas-pemesanan.html" class="bg-primary">Pemesanan</a>
-                        <a href="riwayat-transaksi-produk.html" class="bg-success" target="_blank">Transaksi Produk</a>
-                        <a href="riwayat-transaksi-layanan.html" class="bg-warning-kouvee" target="_blank">Transaksi Layanan</a>
+                    <!-- content -->
+                    <div class="col-12 content">
+
+                        <p class="nomor-po">Nomor PO : <span class="text-primary" style="font-weight: 500;">PO-2020-04-07-01</span></p>
+                        <div class="data-pesanan table-responsive mt-4">
+                            <table class="table table-hover">
+                                <tbody>
+
+                                    <tr>
+                                        <td style="font-weight: 500;">Produk</td>
+                                        <td style="font-weight: 500;">Satuan</td>
+                                        <td style="font-weight: 500;">Jumlah</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <!-- content -->
+
                 </div>
             </div>
+
         </div>
         <!-- akhir right -->
 
     </div>
     <!-- app -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -76,7 +102,7 @@
     <script src="../js/config.js"></script>
     <script src="../js/template-tab-admin.js"></script>
     <script src="../js/template-logout-admin.js"></script>
-    <script src="../js/log-aktivitas.js"></script>
+    <script src="../js/log-aktivitas-pemesanan-detail.js"></script>
 </body>
 
 </html>

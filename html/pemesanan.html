@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sen:700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/template-tab-admin.css">
+
+    <title>Pemesanan | Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app">
+
+        <!-- left -->
+        <div class="left">
+
+            <!-- template tab admin js -->
+
+        </div>
+        <!-- akhir left -->
+
+        <!-- right -->
+        <div class="right">
+            <div class="container">
+                <div class="row">
+
+                    <!-- title -->
+                    <div class="col-6">
+                        <p class="title"><i class="fas fa-truck-loading mr-2"></i> Pemesanan</p>
+                    </div>
+                    <!-- title -->
+
+                    <!-- logout -->
+                    <div class="col-6 logout">
+                        <!-- template logout admin js -->
+                    </div>
+                    <!-- akhir logout -->
+
+                    <!-- content -->
+                    <div class="col-12 content">
+                        <div class="row">
+                            <div class="col-10 search">
+                                <div class="input-group">
+                                    <input id="keyword" type="text" class="form-control"
+                                        placeholder="Cari data kamu disini..." onkeyup="enter()" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-2 tambah">
+                                <a href="pemesanan-form.html">Tambah</a>
+                            </div>
+                        </div>
+
+                        <div class="data table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nomor PO</th>
+                                        <th scope="col">Supplier</th>
+                                        <th scope="col">Tanggal pesan</th>
+                                        <th scope="col">Tanggal masuk</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <!-- append from js get api -->
+
+                                </tbody>
+                            </table>
+
+                            <div class="paging text-right mt-2"></div>
+                        </div>
+
+                        <div class="emptyTable">
+                            Data tidak ditemukan <i class="far fa-frown-open"></i>
+                        </div>
+
+                    </div>
+                    <!-- content -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- akhir right -->
+
+    </div>
+    <!-- app -->
+
+    <!-- popup message -->
+    <div class="popup-message">
+        <div class="message">
+            <p>Message default system</p>
+            <div class="text-right">
+                <button class="confirm" onclick="hidePopup()">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir popup message -->
+
+    <!-- confirm message -->
+    <div class="confirm-message">
+        <div class="message">
+            <p>Yakin ingin menghapus data ini?</p>
+            <div class="text-right">
+                <button class="cancel" onclick="hideConfirmMessage()">Cancel</button>
+                <button class="confirm">Oke</button>
+            </div>
+        </div>
+    </div>
+    <!-- akhir confirm message -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-tab-admin.js"></script>
+    <script src="../js/template-logout-admin.js"></script>
+    <script src="../js/pemesanan.js"></script>
+</body>
+
+</html>

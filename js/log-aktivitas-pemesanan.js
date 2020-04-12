@@ -1,4 +1,3 @@
-
 function enter() {
     if (event.keyCode === 13) {
         getLogByName($('#keyword').val());
@@ -23,29 +22,36 @@ function setTable(data) {
 
     table.html('');
     data.forEach(value => {
+        value.tanggal_masuk == null ? value.tanggal_masuk = '-' : value.tanggal_masuk = value.tanggal_masuk;
         value.updated_at == null ? value.updated_at = '-' : value.updated_at = value.updated_at;
         value.deleted_at == null ? value.deleted_at = '-' : value.deleted_at = value.deleted_at;
 
         table.append(`
             <tr>
-                <td>${value.nama}</td>
-                <td>${value.alamat}</td>
-                <td>${value.tanggal_lahir}</td>
-                <td>${value.no_hp}</td>
+                <td>${value.nomor_po}</td>
+                <td>${value.supplier_name}</td>
+                <td>${value.tanggal_pesan}</td>
+                <td>${value.tanggal_masuk}</td>
+                <td>${value.status}</td>
                 <td>${value.created_at}</td>
                 <td>${value.updated_at}</td>
                 <td>${value.deleted_at}</td>
-                <td>${value.pegawai_name}</td>
+                <td>Admin</td>
+                <td><i class="far fa-eye edit" style="cursor: pointer;" onclick="redirectToDetailPemesanan('${value.nomor_po}')"></i></td>
             </tr>
         `);
     });
+}
+
+function redirectToDetailPemesanan(nomorPO) {
+    window.location.href = `${BASE_URL}log-aktivitas-pemesanan-detail.html?${nomorPO}`;
 }
 
 function getAllLog() {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/log`,
+        url: `${API}Pemesanan/log`,
         type: 'get',
         dataType: 'json',
 
@@ -63,16 +69,16 @@ function getAllLog() {
     });
 }
 
-function getLogByName(nama) {
+function getLogByName(nomorPO) {
     $('.loading').css('display', 'flex');
 
     $.ajax({
-        url: `${API}Customer/log`,
+        url: `${API}Pemesanan/log`,
         type: 'get',
         dataType: 'json',
 
         data: {
-            'nama': nama
+            'nomor_po': nomorPO
         },
 
         success: function (response) {

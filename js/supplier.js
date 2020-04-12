@@ -41,8 +41,6 @@ function setTable(data) {
     table.html('');
 
     data.forEach((value, i) => {
-        value.updated_at === null ? value.updated_at = '-' : value.updated_at;
-
         table.append(`
             <tr>
                 <th>${num}</th>
@@ -94,31 +92,6 @@ function deleteData(id) {
         }
     });
 }
-
-// function getAllData() {
-//     $('.loading').css('display', 'flex');
-
-//     $.ajax({
-//         url: `${API}Supplier`,
-//         type: 'get',
-//         dataType: 'json',
-
-//         success: function (response) {
-//             $('.loading').css('display', 'none');
-//             if (response.code === 200) {
-//                 setTable(response.data);
-//             }
-//         },
-
-//         error: function (response) {
-//             $('.loading').css('display', 'none');
-//             if (response.responseJSON.code === 404) {
-//                 $('#app .right .content .data .table tbody').html('');
-//                 $('#app .right .content .emptyTable').css('display', 'block');
-//             }
-//         }
-//     });
-// }
 
 function getAllData(page = 1) {
     $('.loading').css('display', 'flex');

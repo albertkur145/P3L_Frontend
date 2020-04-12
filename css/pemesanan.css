@@ -1,0 +1,42 @@
+#app .right .content .add-produk-form {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#app .right .content .add-produk-form span {
+    padding: 0.5rem 0.9375rem;
+    border-radius: 2rem;
+    font-size: 1.125rem;
+    color: #FFF;
+    font-weight: 600;
+    background-color: rgba(9, 132, 227, 0.9);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#app .right .content .add-produk-form span:hover {
+    background-color: rgba(9, 132, 227, 1);
+}
+
+#app .right .content .produk-form {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    border: 0.0625rem solid #AAA;
+    position: relative;
+    border-radius: 0.5rem;
+}
+
+#app .right .content .produk-form .minus {
+    position: absolute;
+    top: 0rem;
+    right: 0.75rem;
+    font-weight: 500;
+    font-size: 1.3125rem;
+    color: #888;
+    cursor: pointer;
+    transition: color .2s ease-out;
+}
+
+#app .right .content .produk-form .minus:hover {
+    color: rgba(235, 47, 6, 1.0);
+}

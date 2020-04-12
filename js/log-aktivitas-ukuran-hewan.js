@@ -74,8 +74,10 @@ function getLogByName(nama) {
 
         success: function (response) {
             $('.loading').css('display', 'none');
-            if (response.code === 200)
+            if (response.code === 200) {
+                $('#app .right .content .emptyTable').css('display', 'none');
                 setTable(response.data);
+            }
         },
 
         error: function (response) {
