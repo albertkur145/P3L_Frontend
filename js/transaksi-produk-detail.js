@@ -185,18 +185,20 @@ function postPembayaran() {
 
             data: params,
 
-            success: function(response) {
+            success: function() {
                 $('.loading').css('display', 'none');
-                if (response.code === 200) {
-                    codeBayar = 200;
-                    $('.popup-message .message p').text('Sukses melakukan pembayaran');
-                    $('.popup-message').css('display', 'flex');
-                }
             },
             
             error: function() {
                 $('.loading').css('display', 'none');
                 $('.popup-message .message p').text('Koneksi error! Silahkan coba lagi');
+                $('.popup-message').css('display', 'flex');
+            }
+        }).then((res) => {
+            if (res.code === 200) {
+                window.open(`${API}PembayaranProduk/nota?no_transaksi=${noTransaksi}`, '_blank');
+                codeBayar = 200;
+                $('.popup-message .message p').text('Sukses melakukan pembayaran');
                 $('.popup-message').css('display', 'flex');
             }
         });
