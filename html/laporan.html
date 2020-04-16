@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sen:700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/template-tab-admin.css">
+    <link rel="stylesheet" href="../css/laporan.css">
+
+    <title>Laporan | Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app">
+
+        <!-- left -->
+        <div class="left">
+
+            <!-- template tab admin js -->
+
+        </div>
+        <!-- akhir left -->
+
+        <!-- right -->
+        <div class="right">
+            <div class="container">
+                <div class="row">
+
+                    <!-- title -->
+                    <div class="col-6">
+                        <p class="title"><i class="far fa-clipboard mr-2"></i> Laporan</p>
+                    </div>
+                    <!-- title -->
+
+                    <!-- logout -->
+                    <div class="col-6 logout">
+                        <!-- template logout admin js -->
+                    </div>
+                    <!-- akhir logout -->
+
+                    <!-- content -->
+                    <div class="col-12 content">
+                        <div class="row">
+                            <div class="col-5 choose">
+                                <div class="laporan pendapatan-bulanan">
+                                    <span onclick="showForm('bulanan', this)" data-nama='pendapatanbulanan'>Pendapatan Bulanan</span>
+                                </div>
+                                <div class="laporan pendapatan-tahunan">
+                                    <span onclick="showForm('tahunan', this)" data-nama='pendapatantahunan'>Pendapatan Tahunan</span>
+                                </div>
+                                <div class="laporan pengadaan-bulanan">
+                                    <span onclick="showForm('bulanan', this)" data-nama='pengadaanbulanan'>Pengadaan Bulanan</span>
+                                </div>
+                                <div class="laporan pengadaan-tahunan">
+                                    <span onclick="showForm('tahunan', this)" data-nama='pengadaantahunan'>Pengadaan Tahunan</span>
+                                </div>
+                                <div class="laporan produk-terlaris">
+                                    <span onclick="showForm('tahunan', this)" data-nama='produkterlaris'>Produk Terlaris</span>
+                                </div>
+                                <div class="laporan layanan-terlaris">
+                                    <span onclick="showForm('tahunan', this)" data-nama='layananterlaris'>Layanan Terlaris</span>
+                                </div>
+                            </div>
+
+                            <div class="col-7 form">
+                                <div class="bulanan">
+                                    <div class="form-group">
+                                        <label for="bulan">Bulan</label>
+                                        <select id="bulan" class="form-control">
+                                            <option value="01">Januari</option>
+                                            <option value="02">Februari</option>
+                                            <option value="03">Maret</option>
+                                            <option value="04">April</option>
+                                            <option value="05">Mei</option>
+                                            <option value="06">Juni</option>
+                                            <option value="07">Juli</option>
+                                            <option value="08">Agustus</option>
+                                            <option value="09">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">Desember</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tahun">Tahun</label>
+
+                                        <select id="tahun-bulanan" class="tahun form-control">
+
+                                            <!-- append from js -->
+
+                                        </select>
+                                    </div>
+
+                                    <button type="button" class="btn btn-success mt-2" onclick="printLaporanBulanan()">Cetak</button>
+                                </div>
+
+                                <div class="tahunan">
+                                    <div class="form-group">
+                                        <label for="tahun">Tahun</label>
+
+                                        <select id="tahun-tahunan" class="tahun form-control">
+
+                                            <!-- append from js -->
+
+                                        </select>
+                                    </div>
+
+                                    <button type="button" class="btn btn-success mt-2" onclick="printLaporanTahunan()">Cetak</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- akhir right -->
+
+    </div>
+    <!-- app -->
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-tab-admin.js"></script>
+    <script src="../js/template-logout-admin.js"></script>
+    <script src="../js/laporan.js"></script>
+</body>
+
+</html>

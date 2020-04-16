@@ -1,0 +1,52 @@
+
+
+#app .right .content .choose .laporan {
+    margin-bottom: 3rem;
+}
+
+    #app .right .content .choose .laporan span {
+        background-color: rgba(52, 152, 219, 1.0);
+        padding: 1.25rem 2rem;
+        color: #FFF;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color .2s ease-out;
+        font-size: 0.9375rem;
+        border-radius: 0 3rem 3rem 0;
+    }
+
+    #app .right .content .choose .laporan span:hover {
+        background-color: rgba(41, 128, 185, 1.0);
+    }
+
+    #app .right .content .form {
+        margin-top: -1.375rem;
+    }
+
+        #app .right .content .form select {
+            width: 70%;
+        }
+
+        #app .right .content .form .bulanan {
+            display: none;
+            animation: pop 0.8s ease-out;
+        }
+
+        #app .right .content .form .tahunan {
+            display: none;
+            animation: pop 0.8s ease-out;
+        }
+
+    .is-active {
+        background-color: #3c40c6 !important;
+    }
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: translateX(-2rem);
+    } to {
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+}
