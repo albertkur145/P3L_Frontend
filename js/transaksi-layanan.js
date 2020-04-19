@@ -17,7 +17,14 @@ function hidePopup() {
 
 function showMessageConfirm(noTransaksi) {
     $('.confirm-message').css('display', 'flex');
+    $('.confirm-message .message p').text('Yakin ingin menghapus data ini?');
     $('.confirm-message .message .confirm').attr('onclick', `deleteData('${noTransaksi}')`);
+}
+
+function showMessageConfirmReminder(idUser) {
+    $('.confirm-message').css('display', 'flex');
+    $('.confirm-message .message p').text('Layanan sudah selesai? Kirim sms kepada customer');
+    $('.confirm-message .message .confirm').attr('onclick', `reminderUser('${idUser}')`);
 }
 
 function hideConfirmMessage() {
@@ -32,6 +39,33 @@ function searchData() {
     timeout = setTimeout(() => {
         getByName(keyword);
     }, 700);
+}
+
+function reminderUser(idUser) {
+    $('.loading').css('display', 'flex');
+    $.ajax({
+        url: `${API}TransaksiLayanan/reminder`,
+        type: 'post',
+        dataType: 'json',
+
+        data: {
+            'id_user': idUser
+        },
+
+        success: function (response) {
+            $('.loading').css('display', 'none');
+            hideConfirmMessage();
+            $('.popup-message .message p').text('Pemberitahuan berhasil dikirim ke customer');
+            $('.popup-message').css('display', 'flex');
+        },
+
+        error: function () {
+            $('.loading').css('display', 'none');
+            hideConfirmMessage();
+            $('.popup-message .message p').text('Pemberitahuan berhasil dikirim ke customer');
+            $('.popup-message').css('display', 'flex');
+        }
+    });
 }
 
 function setTable(data) {
@@ -49,7 +83,7 @@ function setTable(data) {
                 <td>${date[2]}-${date[1]}-${date[0]}</td>
                 <td>${datetime[1]} WIB</td>
                 <td>${value.status}
-                <td><i class="far fa-eye edit" onclick="getByNoTransaksi('${value.no_transaksi}')"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm('${value.no_transaksi}')"></i></td>
+                <td><i class="far fa-eye edit" onclick="getByNoTransaksi('${value.no_transaksi}')"></i> <i class="fas fa-sms ml-1 text-success" style="cursor: pointer;" onclick="showMessageConfirmReminder('${value.customer_id}')"></i> <i class="fas fa-times delete ml-1" onclick="showMessageConfirm('${value.no_transaksi}')"></i> </td>
             </tr>
         `);
     });
@@ -98,6 +132,7 @@ function getAll() {
         success: function (response) {
             $('.loading').css('display', 'none');
             if (response.code === 200)
+                console.log(response.data);
                 setTable(response.data);
         },
 
