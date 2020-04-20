@@ -75,7 +75,7 @@ body {
 
         #app .content .data-content {
             width: 61%;
-            min-height: 100vh;
+            max-height: 100vh;
             margin-left: 0.5rem;
             overflow-y: auto;
             overflow-x: hidden;

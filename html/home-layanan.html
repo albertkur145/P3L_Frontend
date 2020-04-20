@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="../icon/logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sen:700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/template-tab-home.css">
+
+    <title>Layanan | Kouvee Pet Shop</title>
+</head>
+
+<body>
+
+    <!-- app -->
+    <div id="app">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light nav">
+            <div class="header">
+                <a href="javascript:void(0)">Kouvee<img src="../icon/logo.png" width="15%" class=" navbar-brand"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav content">
+                    <li class="nav-item" >
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home-produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item active button">
+                        <a class="nav-link" href="home-layanan.html">Layanan <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- right -->
+        <div class="right">
+            <div class="body">
+                <div class="row">
+
+                    <!-- title -->
+                    <div class="col-6">
+                        <p class="title"><i class="fas fa-box-open mr-2"></i> Layanan</p>
+                    </div>
+                    <!-- title -->
+
+                    <div class="col-10 search">
+                        <div class="input-group">
+                            <input id="keyword" type="text" class="form-control"
+                                placeholder="Cari data kamu disini..." onkeyup="enter()" autocomplete="off">
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown col-2">
+                        <button class="btn btn-secondary dropdown-toggle btn-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Urut Berdasarkan
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Nama (A-Z)</a>
+                            <a class="dropdown-item" href="#">Nama (Z-A)</a>
+                            <a class="dropdown-item" href="#">Harga Terendah</a>
+                            <a class="dropdown-item" href="#">Harga Tertinggi</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- content -->
+                <div class="content">
+                        <div class="data table-responsive">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    
+                                    <!-- append from js get api -->
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    <div class="emptyTable">
+                        Data tidak ditemukan <i class="far fa-frown-open"></i>
+                    </div>
+
+                </div>
+                <!-- content -->
+
+            </div>
+        </div>
+        <!-- akhir right -->
+
+    </div>
+    <!-- app -->
+
+
+    <!-- loading -->
+    <div class="loading">
+        <img src="../icon/anjing.gif">
+    </div>
+    <!-- loading -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/template-tab-home.js"></script>
+    <script src="../js/home-layanan.js"></script>
+</body>
+
+</html>
